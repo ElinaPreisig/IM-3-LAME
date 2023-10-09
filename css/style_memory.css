@@ -11,9 +11,16 @@ body {
     padding: 0;
 }
 
+#game-title {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: black;
+}
+
 .logo {
-    position: absolute;
-    top: 0;
+    position: absolute; 
     left: 30px;
     width: 400px;
     height: auto;

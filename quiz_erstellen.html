@@ -1,24 +1,74 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz & Memory</title>
     <link rel="stylesheet" href="css/styles_quiz_erstellen.css">
-    <script src="js/script_quiz_erstellen.js"></script>
-    <title>Eigenes Quiz erstellen</title>
-    <script src="https://unpkg.com/@supabase/supabase-js@2"> </script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1.29.0/dist/umd/supabase.min.js"></script>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1.29.0/dist/umd/supabase.min.js"></script>
+<script src="js/script_quiz_erstellen.js"></script>
 </head>
 
 <body>
-<div class="container">
-    <a href="index.html"><img src="img/logo.png" alt="Logo" class="logo"> <a href="index.html"></a>
-    <img src="img/elgatto.png" alt="Katze" class="katze">
-    <div class="quiz-container">
-
-
-        <div class="title-container">
-            <div class="title">
-                <input type="text" placeholder="Titel deines Spieles eingeben*" required>
-                <div class="answer">
+    <div class="container">
+        <a href="index.html"><img src="img/logo.png" alt="Logo" class="logo"></a>
+        <img src="img/elgatto.png" alt="Katze" class="katze">
+        <div class="quiz-container">
+            <div class="title-container">
+                <div class="title">
+                    <input type="text" placeholder="Titel deines Spieles eingeben*" required>
+                </div>
+            </div>
+            <div class="question-container">
+                <div class="labels">
+                    <label>Ja/</label>
+                    <label>Nein</label>
+                </div>
+                <!-- Frage 1 -->
+                <div class="question">
+                    <input type="text" placeholder="Frage 1*" required>
+                    <div class="answer">
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                <!-- Frage 2 -->
+                <div class="question">
+                    <input type="text" placeholder="Frage 2*" required>
+                    <div class="answer">
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                <!-- Frage 3 -->
+                <div class="question">
+                    <input type="text" placeholder="Frage 3*" required>
+                    <div class="answer">
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                <!-- Frage 4 -->
+                <div class="question">
+                    <input type="text" placeholder="Frage 4*" required>
+                    <div class="answer">
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                <!-- Frage 5 -->
+                <div class="question">
+                    <input type="text" placeholder="Frage 5*" required>
                     <div class="answer">
                         <label class="switch">
                             <input type="checkbox">
@@ -27,87 +77,23 @@
                     </div>
                 </div>
             </div>
-
-        <div class="question-container">
-            <div class="labels">
-                <label>Ja/</label>
-                <label>Nein</label>
-            </div>
-            <div class="question">
-                <input type="text" placeholder="Frage 1*" required>
-                <div class="answer">
-                    <div class="answer">
-                        <label class="switch">
-                            <input type="checkbox">
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="question">
-                <input type="text" placeholder="Frage 2*" required>
-                <div class="answer">
-                    
-                    <div class="answer">
-                        <label class="switch">
-                            <input type="checkbox">
-                            <span class="slider"></span>
-                        </label>
-                    </div>        
-                </div>
-            </div>
-            <div class="question">
-                <input type="text" placeholder="Frage 3*" required>
-                <div class="answer">
-                    
-                    <div class="answer">
-                        <label class="switch">
-                            <input type="checkbox">
-                            <span class="slider"></span>
-                        </label>
-                    </div>     
-                </div>
-            </div>
-            <div class="question">
-                <input type="text" placeholder="Frage 4*" required>
-                <div class="answer">
-                   
-                    <div class="answer">
-                        <label class="switch">
-                            <input type="checkbox">
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="question">
-                <input type="text" placeholder="Frage 5*" required>
-                <div class="answer">
-              
-                    <div class="answer">
-                        <label class="switch">
-                            <input type="checkbox">
-                            <span class="slider"></span>
-                        </label>
-                    </div>                
-                </div>
-            </div>
-        </div>
-        <button class="confirm-button">Bestätigen</button>
-    </div>
-</div>
-<div class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h1>Quiz erfolgreich gespeichert!</h1>
-        </div>
-        <div class="modal-body">
-            <p>Passwort zum Bearbeiten: XY</p>
-        </div>
-        <div class="modal-footer">
-            <button class="play-button">Jetzt Spielen</button>
+            <button class="confirm-button">Bestätigen</button>
         </div>
     </div>
-</div>
+    <div class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1>Quiz erfolgreich gespeichert!</h1>
+            </div>
+            <div class="modal-body">
+                <p>Passwort zum Bearbeiten: XY</p>
+            </div>
+            <div class="modal-footer">
+                <button class="play-button">Jetzt Spielen</button>
+            </div>
+        </div>
+    </div>
+
 </body>
+
 </html>
