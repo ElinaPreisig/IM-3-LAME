@@ -1,0 +1,171 @@
+body {
+    background: linear-gradient(to bottom right, #4d79ff, #ffffff);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.logo {
+    position: absolute;
+    top: 0;
+    left: 60px;
+    width: 25%;
+    height: auto;
+}
+
+.katze {
+    position: absolute;
+    bottom: 0;
+    right: 50px;
+    width: 20%;
+    height: auto;
+}
+
+
+/* Ändere die Größe und den Abstand der Buttons */
+button {
+    background-color: #4d79ff;
+    border-radius: 20px; /* Macht die Buttons quadratisch */
+    border-style: none;
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-right: 10px; /* Fügt Abstand zwischen den Buttons hinzu */
+    margin-left: 40px; /* Fügt Abstand zwischen den Buttons hinzu */
+    padding-top: 20px; /* Ändere die Größe der Buttons */
+    padding-bottom: 20px; /* Ändere die Größe der Buttons */
+    padding-left: 40px; /* Ändere die Größe der Buttons */
+    padding-right: 40px; /* Ändere die Größe der Buttons */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    width: auto;
+    height: auto;
+}
+
+button:hover{
+    background-color:#ffffff; 
+    color:#4d79ff; 
+    border-style:solid; 
+    border-width:2px;
+
+}
+
+.button-suchen {
+    display: flex;
+    align-items: baseline; /* Ändern Sie die Ausrichtung auf "baseline" */
+    margin-top: 400px;
+}
+
+.button-suchen input[type="text"] {
+    flex: 1;
+    padding: 30px 100px 30px 30px ;
+    border: none;
+    border-radius: 20px 20px 20px 20px;
+    font-size: 1.5em;
+}
+
+.button-suchen .back-button {
+    background-color: #4d79ff;
+    border: none;
+    border-radius: 20px 20px 20px 20px;
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 30px 20px; /* Ändern Sie die Größe des Buttons */
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+
+.button-suchen .back-button:hover {
+    background-color: #ffffff;
+    color: #4d79ff;
+    border-style: solid;
+    border-width: 2px;
+}
+
+.button-bestenliste{
+    display:flex; 
+    flex-direction:row; 
+    margin-top: 10px;
+
+}
+
+.button-bestenliste button:first-child{
+    margin-right:auto;
+
+}
+/* ... Vorheriger CSS-Code ... */
+
+.back-button {
+    background-color: #4d79ff;
+    border-radius: 20px;
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    border: none;
+    padding: 15px 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.back-button:hover {
+    background-color: #ffffff;
+    color: #4d79ff;
+    border-style: solid;
+    border-width: 2px;
+}
+
+.bestenliste {
+    background-color: #4d79ff;
+    border-radius: 20px;
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 20px;
+    padding: 20px;
+    text-align: center;
+}
+
+.bestenliste-header {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+}
+
+table th,
+table td {
+    padding: 10px;
+    text-align: center;
+}
+
+/* ... Weitere CSS-Stile ... */
+
+@media (max-width: 900px) {
+    .button-container {
+        flex-direction: column;
+    }
+
+    .logo {
+        max-width: none; /* Das Logo behält seine ursprüngliche Größe bei */
+        width: auto;
+    }
+}
