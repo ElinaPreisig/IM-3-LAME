@@ -1,0 +1,162 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(to bottom right, #4d79ff, #ffffff);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.logo {
+    position: absolute;
+    top: 0;
+    left: 30px;
+    width: 400px;
+    height: auto;
+}
+
+.katze {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 15%;
+    height: auto;
+}
+
+#game-title {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: black;
+}
+
+#game-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    max-width: 800px;
+}
+
+.card {
+    width: 100%;
+    padding-top: 100%;
+    background-color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: 2px solid black;
+}
+
+#timer {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* Popup-Styling */
+.message-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #4d79ff; /* Blauer Hintergrund */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Schatten für das Popup */
+    z-index: 9999; /* Stellen Sie sicher, dass das Popup über allem liegt */
+}
+
+.message-content {
+    font-size: 24px;
+}
+
+/* CSS für das Pop-up-Fenster */
+.message-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(20, 24, 255, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 9999;
+}
+
+.message-content {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+
+
+
+
+
+
+@media (max-width: 1500px) {
+
+    .logo {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 300px;
+        height: auto;
+    }  
+
+    }
+
+@media (max-width: 1300px) {
+
+    .logo {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100px;
+        height: auto;
+        }  
+    
+        }
+    
+
+/* Media Query für Bildschirmbreite ab 900px */
+@media (max-width: 900px) {
+    #game-container {
+        grid-template-columns: repeat(4, 1fr); /* 4 Spalten */
+        grid-template-rows: repeat(5, 1fr); /* 5 Reihen */
+        width: 400px; /* Breite des Spielfelds anpassen */
+    }
+
+    .card {
+        font-size: 20px; /* Kleinere Schriftgröße für die Karten */
+    }
+
+    .logo {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100px;
+        height: auto;
+    }
+    
+    .katze {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 15%;
+        height: auto;
+    }
+}
+
