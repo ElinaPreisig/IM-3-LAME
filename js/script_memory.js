@@ -65,8 +65,8 @@ function checkMatch() {
             showMessage(`Gratulation! Du hast es geschafft! Zeit: ${seconds} Sekunden`);
         }
     } else {
-        card1.style.backgroundImage = `url(card-back.jpg)`;
-        card2.style.backgroundImage = `url(card-back.jpg)`;
+        card1.style.backgroundImage = `url(img/card-back.jpg)`;
+        card2.style.backgroundImage = `url(img/card-back.jpg)`;
         card1.innerText = "";
         card2.innerText = "";
     }
