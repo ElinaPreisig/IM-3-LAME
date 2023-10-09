@@ -1,4 +1,4 @@
-const images = ["bild1.jpg", "bild2.jpg", "bild3.jpg", "bild4.jpg", "bild5.jpg", "bild6.jpg", "bild7.jpg", "bild8.jpg", "bild9.jpg", "bild10.jpg", "bild1.jpg", "bild2.jpg", "bild3.jpg", "bild4.jpg", "bild5.jpg", "bild6.jpg", "bild7.jpg", "bild8.jpg", "bild9.jpg", "bild10.jpg"];
+const images = ["img/bild1.jpg", "img/bild2.jpg", "img/bild3.jpg", "img/bild4.jpg", "img/bild5.jpg", "img/bild6.jpg", "img/bild7.jpg", "img/bild8.jpg", "img/bild9.jpg", "img/bild10.jpg", "img/bild1.jpg", "img/bild2.jpg", "img/bild3.jpg", "img/bild4.jpg", "img/bild5.jpg", "img/bild6.jpg", "img/bild7.jpg", "img/bild8.jpg", "img/bild9.jpg", "img/bild10.jpg"];
 let cards = [];
 let flippedCards = [];
 let matchedPairs = 0;
