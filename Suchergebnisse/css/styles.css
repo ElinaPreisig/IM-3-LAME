@@ -1,0 +1,88 @@
+body {
+    background: linear-gradient(to bottom right, #4d79ff, #ffffff);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.logo {
+    position: absolute;
+    top: 0;
+    left: 40px;
+    width: 25%;
+    height: auto;
+}
+
+.katze {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 15%;
+    height: auto;
+}
+
+.box {
+    background-color: #4d79ff;
+    border-radius: 20px;
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 20px;
+    padding: 20px 90px 20px 20px;
+    text-align: center;
+    cursor: pointer;
+    width: auto;
+    height: auto;
+}
+
+.box-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.blue-box {
+    background-color: #4d79ff;
+    border-radius: 20px;
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 20px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+.logo-box img {
+    max-width: 30px; /* Passen Sie die maximale Breite der Logos nach Bedarf an */
+    max-height: 30px; /* Passen Sie die maximale Höhe der Logos nach Bedarf an */
+    margin: 5px 5px 5px 15px;
+}
+
+
+
+@media (max-width: 900px) {
+    .button-container {
+        flex-direction: column;
+    }
+
+    .logo {
+        max-width: none; /* Das Logo behält seine ursprüngliche Größe bei */
+        width: auto;
+    }
+}
