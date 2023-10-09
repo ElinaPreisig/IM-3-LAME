@@ -22,7 +22,7 @@ for (let i = 0; i < images.length; i++) {
     card.dataset.index = i;
 
     // Set the back image for all cards
-    card.style.backgroundImage = `url(card-back.jpg)`;
+    card.style.backgroundImage = `url(img/card-back.jpg)`;
     card.innerText = "";
 
     card.addEventListener("click", flipCard);
