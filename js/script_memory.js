@@ -84,6 +84,36 @@ function showMessage(messageText) {
     messageContent.textContent = messageText;
     messageBox.appendChild(messageContent);
     document.body.appendChild(messageBox);
+
+    // Hier wird die Zeit und der Spielername in die Datenbank gespeichert
+    saveGameData(messageText);
+}
+
+// Function to save game data (time and player name) to the database
+function saveGameData(messageText) {
+    const playerName = prompt("Bitte gib deinen Namen ein:");
+    
+    if (!playerName) {
+        return; // Wenn kein Spielername eingegeben wurde, breche ab
+    }
+
+    // Hier wird die Zeit und der Spielername in die Datenbank gespeichert
+    const supabase = supabase.createClient('https://tenojoxlyquvqackgeif.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRlbm9qb3hseXF1dnFhY2tnZWlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTYzMTY3NzAsImV4cCI6MjAxMTg5Mjc3MH0.4ZX9-F1GNCgWSmLleh5QLyDNkE1MljglPV54eemu-2w');
+
+    supabase
+        .from('users') // Stelle sicher, dass dies auf deine Users-Tabelle in der Datenbank verweist
+        .upsert([
+            {
+                spieler_name: playerName,
+                persönliche_bestzeit: messageText, // Hier speicherst du die erspielte Zeit
+            }
+        ])
+        .then(() => {
+            console.log('Spielzeit und Spielername erfolgreich gespeichert.');
+        })
+        .catch((error) => {
+            console.error('Fehler beim Speichern der Spielzeit und des Spielername:', error);
+        });
 }
 
 // Function to show a question in a pop-up
