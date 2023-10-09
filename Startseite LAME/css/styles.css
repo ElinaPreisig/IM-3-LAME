@@ -1,0 +1,85 @@
+body {
+    background: linear-gradient(to bottom right, #4d79ff, #ffffff);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.logo {
+    position: absolute;
+    top: 0;
+    width: 40%;
+    height: auto;
+}
+
+.katze {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 15%;
+    height: auto;
+}
+
+
+/* Ändere die Größe und den Abstand der Buttons */
+button {
+    background-color: #4d79ff;
+    border-radius: 20px; /* Macht die Buttons quadratisch */
+    border-style: none;
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-right: 10px; /* Fügt Abstand zwischen den Buttons hinzu */
+    margin-left: 40px; /* Fügt Abstand zwischen den Buttons hinzu */
+    padding-top: 20px; /* Ändere die Größe der Buttons */
+    padding-bottom: 20px; /* Ändere die Größe der Buttons */
+    padding-left: 40px; /* Ändere die Größe der Buttons */
+    padding-right: 40px; /* Ändere die Größe der Buttons */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    width: auto;
+    height: auto;
+}
+
+button:hover{
+    background-color:#ffffff; 
+    color:#4d79ff; 
+    border-style:solid; 
+    border-width:2px;
+
+}
+
+.button-container{
+    display:flex; 
+    flex-direction:row; 
+    margin-top: 400px;
+
+}
+
+.button-container button:first-child{
+    margin-right:auto;
+
+}
+
+@media (max-width: 900px) {
+    .button-container {
+        flex-direction: column;
+    }
+
+    .logo {
+        max-width: none; /* Das Logo behält seine ursprüngliche Größe bei */
+        width: auto;
+    }
+}
