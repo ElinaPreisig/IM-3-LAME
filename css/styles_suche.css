@@ -12,12 +12,14 @@ body {
     justify-content: center;
     height: 100vh;
     width: 100vw;
+    position: relative;
 }
+
 
 .logo {
     position: absolute;
     top: 0;
-    width: 35%;
+    width: 25%;
     height: auto;
 }
 
@@ -29,6 +31,26 @@ body {
     height: auto;
     cursor: pointer; /* Ändere hier: Cursor bei der Katze */
 }
+
+/* CSS für die Suchergebnisse */
+#suchergebnis-container {
+    margin-top: 20px; /* Fügt Abstand zwischen dem Suchfeld und den Suchergebnissen hinzu */
+}
+
+#suchergebnis-container div {
+    background-color: #FFF2CF; /* Hintergrundfarbe für jedes Suchergebnis */
+    border-radius: 10px; /* Abgerundete Ecken */
+    padding: 10px 20px; /* Innenabstand für jedes Suchergebnis */
+    margin-bottom: 10px; /* Abstand zwischen den Suchergebnissen */
+    font-size: 1.2em; /* Schriftgröße für die Suchergebnisse */
+    cursor: pointer; /* Zeige einen Zeiger-Cursor beim Überfahren der Suchergebnisse */
+}
+
+#suchergebnis-container div:hover {
+    background-color: #c6b891; /* Hintergrundfarbe ändern, wenn das Suchergebnis überfahren wird */
+    color: #ffffff; /* Textfarbe ändern, wenn das Suchergebnis überfahren wird */
+}
+
 
 
 /* Ändere die Größe und den Abstand der Buttons */
@@ -100,13 +122,59 @@ button:hover{
     display:flex; 
     flex-direction:row; 
     margin-top: 10px;
-
+    color: white;
 }
 
 .button-bestenliste button:first-child{
     margin-right:auto;
-
 }
+
+/* Styling für die Icons */
+.fa-play,
+.fa-edit {
+    font-size: 20px; /* Passen Sie die Größe der Icons an */
+    margin-left: 10px; /* Fügen Sie Abstand zwischen den Icons hinzu */
+    color: #007bff; /* Ändern Sie die Farbe der Icons nach Bedarf */
+}
+
+/* CSS für das Popup-Fenster */
+.popup {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* CSS für das Passwort-Eingabefeld */
+#password-input {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* CSS für den "Jetzt Spielen"-Button */
+.popup button {
+    background-color: #4d79ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+/* CSS für die Fehlermeldung */
+.error-message {
+    color: red;
+    display: none;
+}
+
 
 @media (max-width: 900px) {
     .button-container {
