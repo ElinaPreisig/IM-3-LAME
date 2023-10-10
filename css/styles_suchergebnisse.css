@@ -86,3 +86,23 @@ body {
         width: auto;
     }
 }
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 20px;
+    color: #4d79ff;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 20px;
+    text-align: center;
+    z-index: 1000;
+}
+
+#popup {
+    display: none;
+  }

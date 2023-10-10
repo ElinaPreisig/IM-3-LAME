@@ -48,7 +48,7 @@
                 <img src="img/spielen.png" alt="Logo 7">
             </div>
             <div class="logo-box">
-                <img src="img/bearbeiten.png" alt="Logo 8" onclick="openPopup('Logo 8 bearbeiten');">
+                <img src="img/bearbeiten.png" alt="Logo 8" onclick="openPopup('');">
             </div>
         </div>
         <div class="blue-box">
@@ -62,7 +62,17 @@
         </div>
     </div>
 </div>
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <span class="close" onclick="closePopup()">&times;</span>
+        <p>Passwort für die Bearbeitung eingeben:</p>
+        <input type="password" placeholder="Passwort" id="passwordInput">
+        <button onclick="confirmAction()">Bestätigen</button>
+    </div>
+</div>
+</div>
 
+<script src="js/suchergebnisse.js"></script>
 
 </body>
 </html>
