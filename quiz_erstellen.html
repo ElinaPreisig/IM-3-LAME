@@ -7,14 +7,13 @@
     <title>Quiz & Memory</title>
     <link rel="stylesheet" href="css/styles_quiz_erstellen.css">
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1.29.0/dist/umd/supabase.min.js"></script>
-<script src="js/script_quiz_erstellen.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1.29.0/dist/umd/supabase.min.js"></script>
 </head>
 
 <body>
 <div class="container">
     <a href="index.html"><img src="img/logo.png" alt="Logo" class="logo"> <a href="index.html"></a>
-    <img src="img/elgatto.png" alt="Katze" class="katze onclick="playSoundEffect()">
+    <img src="img/elgatto.png" alt="Katze" class="katze">
     <div class="quiz-container">
 
 
@@ -59,7 +58,7 @@
                             <input type="checkbox" id="=antwort2">
                             <span class="slider"></span>
                         </label>
-                    </div>
+                    </div>        
                 </div>
             </div>
             <div class="question">
@@ -72,7 +71,7 @@
                             <input type="checkbox" id="=antwort3">
                             <span class="slider"></span>
                         </label>
-                    </div>
+                    </div>     
                 </div>
             </div>
             <div class="question">
@@ -98,11 +97,9 @@
                             <input type="checkbox" id="=antwort5">
                             <span class="slider"></span>
                         </label>
-                    </div>
+                    </div>                
                 </div>
             </div>
-            <div class="confirm-button">
-                <a href="memory.html"><button>Besätigen</button></a>
         </div>
         <button class="confirm-button">Bestätigen</button>
     </div>
@@ -121,6 +118,7 @@
     </div>
 </div>
 <script type="module" src="js/script_quiz_erstellen.js"></script>
+<script type="module" src="supabase.js"></script>
 
 </body>
 
