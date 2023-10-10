@@ -21,12 +21,20 @@ async function suche() {
     suchergebnisContainer.innerHTML = ""; // Löschen Sie vorherige Suchergebnisse
 
     if (data) {
-        // Durch die Suchergebnisse iterieren und für jedes Ergebnis ein <div> erstellen
+        // Durch die Suchergebnisse iterieren und für jedes Ergebnis ein <div> erstellen    
         data.forEach((item) => {
-            const suchergebnisDiv = document.createElement("div");
-            suchergebnisDiv.textContent = item.name; // Zeigen Sie den Namen an, Sie können weitere Informationen hinzufügen
-            suchergebnisContainer.appendChild(suchergebnisDiv);
-        });
+                const suchergebnisDiv = document.createElement("div");
+                
+                
+                const playEmoji = '▶️'; 
+                const editEmoji = '🔄'; 
+                
+                
+                suchergebnisDiv.innerHTML = `${item.name}      ${playEmoji}       ${editEmoji} `;
+                
+                suchergebnisContainer.appendChild(suchergebnisDiv);
+            });
+    
     } else {
         // Keine Suchergebnisse gefunden
         const keineErgebnisseDiv = document.createElement("div");
@@ -39,3 +47,36 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const suchbutton = document.getElementById('suchbutton');
     suchbutton.addEventListener('click', suche);
 });
+
+
+const playIcons = document.querySelectorAll('.play-icon');
+playIcons.forEach((icon, index) => {
+    icon.addEventListener('click', () => {
+        openPopup(index + 1);
+    });
+});
+
+// Funktion zum Öffnen des Popup-Fensters
+function openPopup(quizId) {
+    const popup = document.getElementById(`popup-quiz-${quizId}`);
+    popup.style.display = 'block';
+}
+
+// Funktion zum Starten des Quiz
+async function startQuiz(quizId) {
+    const passwordInput = document.getElementById('password-input');
+    const errorMessage = document.getElementById(`error-message-${quizId}`);
+    errorMessage.style.display = 'none';
+
+    const quiz = data[quizId - 1]; // Hier müssen Sie sicherstellen, dass Ihr data-Array korrekt indiziert ist
+    const enteredPassword = passwordInput.value;
+
+    if (quiz && quiz.passwort === enteredPassword) {
+        // Passwort ist korrekt, Fragen anzeigen (ersetzen Sie dies durch Ihre Logik)
+        console.log(`Starte Quiz ${quizId}`);
+        // Hier können Sie die Logik zum Anzeigen der Fragen implementieren
+    } else {
+        // Passwort ist nicht korrekt, Fehlermeldung anzeigen
+        errorMessage.style.display = 'block';
+    }
+}
