@@ -2,7 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="css/styles_bestenliste.css">
-    <title>Game Übersicht</title>
+    <title>Bestenliste</title>
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1.29.0/dist/umd/supabase.min.js"></script>
 </head>
@@ -39,44 +39,10 @@
         <!-- Füge hier alternative Quellen oder Formate für den Soundeffekt hinzu -->
     </audio>
 
-    <script>
-        function playSoundEffect() {
-            var audio = document.getElementById('soundEffect');
-            audio.play();
-        }
+    <script type="module" src="js/bestenListe.js"></script>
+    <script type="module" src="supabase.js"></script>
 
-        document.addEventListener('DOMContentLoaded', async function () {
-            const supabaseUrl = 'https://your-supabase-url.com';
-            const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRlbm9qb3hseXF1dnFhY2tnZWlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTYzMTY3NzAsImV4cCI6MjAxMTg5Mjc3MH0.4ZX9-F1GNCgWSmLleh5QLyDNkE1MljglPV54eemu-2w';
-            const supabase = createClient(supabaseUrl, supabaseKey);
-
-            // Daten von Supabase abrufen
-            const { data, error } = await supabase
-                .from('Spielzeit')
-                .select('name_game, name_user, spielzeit')
-                .order('spielzeit', { ascending: true })
-                .limit(5);
-
-            if (error) {
-                console.error('Fehler beim Abrufen der Daten:', error);
-                return;
-            }
-
-            // Daten in die Tabelle einfügen
-            const bestenlisteTable = document.getElementById('bestenliste-table');
-            const tbody = bestenlisteTable.querySelector('tbody');
-
-            data.forEach((eintrag, index) => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${eintrag.name_game}</td>
-                    <td>${eintrag.name_user}</td>
-                    <td>${eintrag.spielzeit}</td>
-                `;
-                tbody.appendChild(row);
-            });
-        });
-    </script>
 </body>
+
 </html>
 
