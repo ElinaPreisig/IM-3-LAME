@@ -1,3 +1,29 @@
+const supabaseUrl = 'https://tenojoxlyquvqackgeif.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRlbm9qb3hseXF1dnFhY2tnZWlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTYzMTY3NzAsImV4cCI6MjAxMTg5Mjc3MH0.4ZX9-F1GNCgWSmLleh5QLyDNkE1MljglPV54eemu-2w'
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+document.addEventListener("DOMContentLoaded", async function () {
+    try {
+        // Abrufen der Quiz-Daten aus Supabase
+        const { data, error } = await supabase.from('quizzes').select('*');
+
+        if (error) {
+            console.error('Fehler beim Abrufen von Quiz-Daten aus Supabase:', error);
+        } else {
+            const quizData = data[0]?.quizData || [];
+            console.log('Quiz-Daten aus Supabase:', quizData);
+
+            // Karten erstellen und anzeigen
+            const gameContainer = document.getElementById("game-container");
+            const cards = createCards();
+            cards.forEach(card => gameContainer.appendChild(card));
+        }
+    } catch (error) {
+        console.error('Ein unerwarteter Fehler ist aufgetreten:', error);
+    }
+});
+
+
 const images = ["img/bild1.jpg", "img/bild2.jpg", "img/bild3.jpg", "img/bild4.jpg", "img/bild5.jpg", "img/bild6.jpg", "img/bild7.jpg", "img/bild8.jpg", "img/bild9.jpg", "img/bild10.jpg", "img/bild1.jpg", "img/bild2.jpg", "img/bild3.jpg", "img/bild4.jpg", "img/bild5.jpg", "img/bild6.jpg", "img/bild7.jpg", "img/bild8.jpg", "img/bild9.jpg", "img/bild10.jpg"];
 let cards = [];
 let flippedCards = [];
@@ -49,7 +75,7 @@ function flipCard() {
 // Function to check if two flipped cards match
 function checkMatch() {
     const [card1, card2] = flippedCards;
-    
+
     if (card1.dataset.image === card2.dataset.image) {
         card1.removeEventListener("click", flipCard);
         card2.removeEventListener("click", flipCard);
@@ -92,7 +118,7 @@ function showMessage(messageText) {
 // Function to save game data (time and player name) to the database
 function saveGameData(messageText) {
     const playerName = prompt("Bitte gib deinen Namen ein:");
-    
+
     if (!playerName) {
         return; // Wenn kein Spielername eingegeben wurde, breche ab
     }
@@ -118,28 +144,38 @@ function saveGameData(messageText) {
 
 // Function to show a question in a pop-up
 function showQuestion() {
-    const questionText = "Gibt es den Studiengang Multimedia Production?";
-    const correctAnswer = "Ja";
+    // Hier wird die Frage aus der Datenbank abgerufen und angezeigt
+    fetchRandomQuestion()
+        .then((questionData) => {
+            const questionText = questionData.fragesatz;
+            const correctAnswer = questionData.antwort;
 
-    const answer = prompt(questionText);
+            const userAnswer = prompt(questionText);
 
-    if (answer && answer.toLowerCase() === correctAnswer.toLowerCase()) {
-        // Richtige Antwort: Zeit abziehen (minus 15 Sekunden)
-        seconds -= 15;
-        if (seconds < 0) {
-            seconds = 0;
-        }
-    } else {
-        // Falsche Antwort: Zeit hinzufügen (plus 30 Sekunden)
-        seconds += 30;
-    }
+            if (userAnswer && userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+                // Richtige Antwort: Zeit abziehen (minus 5 Sekunden)
+                seconds -= 5;
+                if (seconds < 0) {
+                    seconds = 0;
+                }
+            } else {
+                // Falsche Antwort: Zeit hinzufügen (plus 20 Sekunden)
+                seconds += 20;
+            }
 
-    // Aktualisierte Zeit anzeigen
-    timer.textContent = `Zeit: ${seconds} Sekunden`;
+            // Aktualisierte Zeit anzeigen
+            timer.textContent = `Zeit: ${seconds} Sekunden`;
+        });
 }
 
 // Start the timer
-timerInterval = setInterval(function() {
+timerInterval = setInterval(function () {
     seconds++;
     timer.textContent = `Zeit: ${seconds} Sekunden`;
 }, 1000);
+
+// Funktion, um eine zufällige Frage aus der Datenbank abzurufen
+function fetchRandomQuestion() {
+    return fetch('/get-random-question') // Hier sollte der Endpunkt für die Abfrage der Frage aus der Datenbank stehen
+        .then((response) => response.json());
+}
