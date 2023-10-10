@@ -15,6 +15,7 @@ body {
     left: 0;
     width: 20%;
     height: auto;
+    cursor: pointer; /* Ändere hier: Cursor bei der Katze */
 }
 
 .container {
