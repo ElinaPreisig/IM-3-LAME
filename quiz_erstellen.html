@@ -12,66 +12,90 @@
 </head>
 
 <body>
-    <div class="container">
-        <a href="index.html"><img src="img/logo.png" alt="Logo" class="logo"></a>
-        <img src="img/elgatto.png" alt="Katze" class="katze" onclick="playSoundEffect()">
-        <div class="quiz-container">
-            <div class="title-container">
-                <div class="title">
-                    <input type="text" placeholder="Titel deines Spieles eingeben*" required>
+<div class="container">
+    <a href="index.html"><img src="img/logo.png" alt="Logo" class="logo"> <a href="index.html"></a>
+    <img src="img/elgatto.png" alt="Katze" class="katze onclick="playSoundEffect()">
+    <div class="quiz-container">
+
+
+        <div class="title-container">
+            <div class="title">
+                <label for="name_quiz"></label>
+                <input type="text" id= "name_quiz" placeholder="Titel deines Spieles eingeben*" required>
+                <div class="answer">
+                    <div class="answer">
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
                 </div>
             </div>
-            <div class="question-container">
-                <div class="labels">
-                    <label>Ja/</label>
-                    <label>Nein</label>
-                </div>
-                <!-- Frage 1 -->
-                <div class="question">
-                    <input type="text" placeholder="Frage 1*" required>
+
+        <div class="question-container">
+            <div class="labels">
+                <label>Ja/</label>
+                <label>Nein</label>
+            </div>
+            <div class="question">
+                <label for="frage1"></label>
+                <input type="text" id="frage1" placeholder="Frage 1*" required>
+                <div class="answer">
                     <div class="answer">
                         <label class="switch">
-                            <input type="checkbox">
+                            <input type="checkbox" id="=antwort1">
                             <span class="slider"></span>
                         </label>
                     </div>
                 </div>
-                <!-- Frage 2 -->
-                <div class="question">
-                    <input type="text" placeholder="Frage 2*" required>
+            </div>
+            <div class="question">
+                <label for="frage2"></label>
+                <input type="text" id="frage2" placeholder="Frage 2*" required>
+                <div class="answer">
+                    
                     <div class="answer">
                         <label class="switch">
-                            <input type="checkbox">
+                            <input type="checkbox" id="=antwort2">
                             <span class="slider"></span>
                         </label>
                     </div>
                 </div>
-                <!-- Frage 3 -->
-                <div class="question">
-                    <input type="text" placeholder="Frage 3*" required>
+            </div>
+            <div class="question">
+                <label for="frage3"></label>
+                <input type="text" id="frage3" placeholder="Frage 3*" required>
+                <div class="answer">
+                    
                     <div class="answer">
                         <label class="switch">
-                            <input type="checkbox">
+                            <input type="checkbox" id="=antwort3">
                             <span class="slider"></span>
                         </label>
                     </div>
                 </div>
-                <!-- Frage 4 -->
-                <div class="question">
-                    <input type="text" placeholder="Frage 4*" required>
+            </div>
+            <div class="question">
+                <label for="frage4"></label>
+                <input type="text" id="frage4" placeholder="Frage 4*" required>
+                <div class="answer">
+                   
                     <div class="answer">
                         <label class="switch">
-                            <input type="checkbox">
+                            <input type="checkbox" id="=antwort4">
                             <span class="slider"></span>
                         </label>
                     </div>
                 </div>
-                <!-- Frage 5 -->
-                <div class="question">
-                    <input type="text" placeholder="Frage 5*" required>
+            </div>
+            <div class="question">
+                <label for="frage5"></label>
+                <input type="text" id="frage5" placeholder="Frage 5*" required>
+                <div class="answer">
+              
                     <div class="answer">
                         <label class="switch">
-                            <input type="checkbox">
+                            <input type="checkbox" id="=antwort5">
                             <span class="slider"></span>
                         </label>
                     </div>
@@ -80,34 +104,23 @@
             <div class="confirm-button">
                 <a href="memory.html"><button>Besätigen</button></a>
         </div>
+        <button class="confirm-button">Bestätigen</button>
     </div>
-    <div class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1>Quiz erfolgreich gespeichert!</h1>
-            </div>
-            <div class="modal-body">
-                <p>Passwort zum Bearbeiten: XY</p>
-            </div>
-            <div class="modal-footer">
-                <button class="play-button">Jetzt Spielen</button>
-            </div>
+</div>
+<div class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h1>Quiz erfolgreich gespeichert!</h1>
+        </div>
+        <div class="modal-body">
+            <p>Passwort zum Bearbeiten: XY</p>
+        </div>
+        <div class="modal-footer">
+            <button class="play-button">Jetzt Spielen</button>
         </div>
     </div>
-    
-    </div>
-       <!-- Audio-Element für den Soundeffekt -->
-<audio id="soundEffect">
-    <source src="audio/mpeg/moew01.mp3" type="audio/mpeg">
-    <!-- Füge hier alternative Quellen oder Formate für den Soundeffekt hinzu -->
-</audio>
-
-<script>
-    function playSoundEffect() {
-        var audio = document.getElementById('soundEffect');
-        audio.play();
-    }
-</script>
+</div>
+<script type="module" src="js/script_quiz_erstellen.js"></script>
 
 </body>
 
