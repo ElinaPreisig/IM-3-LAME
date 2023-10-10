@@ -27,6 +27,7 @@ body {
     right: 0;
     width: 15%;
     height: auto;
+    cursor: pointer; /* Ändere hier: Cursor bei der Katze */
 }
 
 

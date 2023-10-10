@@ -11,7 +11,7 @@
 <div class="container">
     <a  href="index.html"> 
     <img src="img/logo.png" alt="Logo" class="logo"> </a>
-    <img src="img/elgatto.png" alt="Katze" class="katze">
+    <img src="img/elgatto.png" alt="Katze" class="katze" onclick="playSoundEffect()">
 
     <div class="button-suchen">
         <input type="text" placeholder="Suche hier ein Quiz">
@@ -21,5 +21,17 @@
         <button> <a href="Bestenliste.html"> Bestenliste</button></a>
     </div>
 </div>
+   <!-- Audio-Element für den Soundeffekt -->
+   <audio id="soundEffect">
+    <source src="audio/mpeg/moew01.mp3" type="audio/mpeg">
+    <!-- Füge hier alternative Quellen oder Formate für den Soundeffekt hinzu -->
+</audio>
+
+<script>
+    function playSoundEffect() {
+        var audio = document.getElementById('soundEffect');
+        audio.play();
+    }
+</script>
 </body>
 </html>

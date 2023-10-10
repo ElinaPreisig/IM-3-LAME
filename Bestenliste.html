@@ -12,7 +12,7 @@
     <a href="index.html">
         <img src="img/logo.png" alt="Logo" class="logo">
     </a>
-    <img src="img/elgatto.png" alt="Katze" class="katze">
+    <img src="img/elgatto.png" alt="Katze" class="katze" onclick="playSoundEffect()">
     
     <button class="back-button"> <a href="suche.html">Zurück</button></a>
     
@@ -56,5 +56,18 @@
         </table>
     </div>
 </div>
+   <!-- Audio-Element für den Soundeffekt -->
+   <audio id="soundEffect">
+    <source src="audio/mpeg/moew01.mp3" type="audio/mpeg">
+    <!-- Füge hier alternative Quellen oder Formate für den Soundeffekt hinzu -->
+</audio>
+
+<script>
+    function playSoundEffect() {
+        var audio = document.getElementById('soundEffect');
+        audio.play();
+    }
+</script>
+
 </body>
 </html>
