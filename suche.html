@@ -9,8 +9,9 @@
 
 <body>
 <div class="container">
-    <img src="img/logo.png" alt="Logo" class="logo">
-    <img src="img/elgatto.png" alt="Katze" class="katze">
+    <a  href="index.html"> 
+    <img src="img/logo.png" alt="Logo" class="logo"> </a>
+    <img src="img/elgatto.png" alt="Katze" class="katze" onclick="playSoundEffect()">
 
     <div class="button-suchen">
         <input type="text" id="suchfeld" placeholder="Suche hier ein Quiz">
@@ -22,5 +23,17 @@
  <div id="suchergebnis-container"></div>
 </div>
     <script type="module" src="js/script_suche.js"></script>
+   <!-- Audio-Element für den Soundeffekt -->
+   <audio id="soundEffect">
+    <source src="audio/mpeg/moew01.mp3" type="audio/mpeg">
+    <!-- Füge hier alternative Quellen oder Formate für den Soundeffekt hinzu -->
+</audio>
+
+<script>
+    function playSoundEffect() {
+        var audio = document.getElementById('soundEffect');
+        audio.play();
+    }
+</script>
 </body>
 </html>

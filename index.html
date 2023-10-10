@@ -10,13 +10,26 @@
 <body>
 <div class="container">
     <a href="index.html"></a><img src="img/logo.png" alt="Logo" class="logo">
-    <img src="img/elgatto.png" alt="Katze" class="katze">
+    <img src="img/elgatto.png" alt="Katze" class="katze" onclick="playSoundEffect()">
 
     <div class="button-container">
         <a href="quiz_erstellen.html"><button>Eigenes Spiel erstellen</button></a>
         <a href="suche.html"><button> Bestehendes Quiz spielen</button></a>
     </div>
 </div>
+   <!-- Audio-Element für den Soundeffekt -->
+   <audio id="soundEffect">
+    <source src="audio/mpeg/moew01.mp3" type="audio/mpeg">
+    <!-- Füge hier alternative Quellen oder Formate für den Soundeffekt hinzu -->
+</audio>
+
+<script>
+    function playSoundEffect() {
+        var audio = document.getElementById('soundEffect');
+        audio.play();
+    }
+</script>
+
 <script type="module" src="js/test.js"></script>
 </body>
 </html>
