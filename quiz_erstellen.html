@@ -17,7 +17,8 @@
 
         <div class="title-container">
             <div class="title">
-                <input type="text" placeholder="Titel deines Spieles eingeben*" required>
+                <label for="name_quiz"></label>
+                <input type="text" id= "name_quiz" placeholder="Titel deines Spieles eingeben*" required>
                 <div class="answer">
                     <div class="answer">
                         <label class="switch">
@@ -34,59 +35,64 @@
                 <label>Nein</label>
             </div>
             <div class="question">
-                <input type="text" placeholder="Frage 1*" required>
+                <label for="frage1"></label>
+                <input type="text" id="frage1" placeholder="Frage 1*" required>
                 <div class="answer">
                     <div class="answer">
                         <label class="switch">
-                            <input type="checkbox">
+                            <input type="checkbox" id="=antwort1">
                             <span class="slider"></span>
                         </label>
                     </div>
                 </div>
             </div>
             <div class="question">
-                <input type="text" placeholder="Frage 2*" required>
+                <label for="frage2"></label>
+                <input type="text" id="frage2" placeholder="Frage 2*" required>
                 <div class="answer">
                     
                     <div class="answer">
                         <label class="switch">
-                            <input type="checkbox">
+                            <input type="checkbox" id="=antwort2">
                             <span class="slider"></span>
                         </label>
                     </div>        
                 </div>
             </div>
             <div class="question">
-                <input type="text" placeholder="Frage 3*" required>
+                <label for="frage3"></label>
+                <input type="text" id="frage3" placeholder="Frage 3*" required>
                 <div class="answer">
                     
                     <div class="answer">
                         <label class="switch">
-                            <input type="checkbox">
+                            <input type="checkbox" id="=antwort3">
                             <span class="slider"></span>
                         </label>
                     </div>     
                 </div>
             </div>
             <div class="question">
-                <input type="text" placeholder="Frage 4*" required>
+                <label for="frage4"></label>
+                <input type="text" id="frage4" placeholder="Frage 4*" required>
                 <div class="answer">
                    
                     <div class="answer">
                         <label class="switch">
-                            <input type="checkbox">
+                            <input type="checkbox" id="=antwort4">
                             <span class="slider"></span>
                         </label>
                     </div>
                 </div>
             </div>
             <div class="question">
-                <input type="text" placeholder="Frage 5*" required>
+                <label for="frage5"></label>
+                <input type="text" id="frage5" placeholder="Frage 5*" required>
                 <div class="answer">
               
                     <div class="answer">
                         <label class="switch">
-                            <input type="checkbox">
+                            <input type="checkbox" id="=antwort5">
                             <span class="slider"></span>
                         </label>
                     </div>                
@@ -109,5 +115,7 @@
         </div>
     </div>
 </div>
+<script type="module" src="js/script_quiz_erstellen.js"></script>
+
 </body>
 </html>
