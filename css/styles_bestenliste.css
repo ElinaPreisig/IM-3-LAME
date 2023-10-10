@@ -171,13 +171,32 @@ table td {
 
 /* ... Weitere CSS-Stile ... */
 
-@media (max-width: 900px) {
+/*@media (max-width: 900px) {
     .button-container {
         flex-direction: column;
     }
 
     .logo {
         max-width: none; /* Das Logo behält seine ursprüngliche Größe bei */
-        width: auto;
+        /* width: auto;
+    }
+}*/
+
+@media only screen and (max-width: 600px) {
+    .logo {
+        max-width: 80%;
+    }
+
+    .back-button {
+        font-size: 14px;
+    }
+
+    .bestenliste-header {
+        font-size: 20px;
+    }
+
+    th, td {
+        padding: 8px;
+        font-size: 10px;
     }
 }
