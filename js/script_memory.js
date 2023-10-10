@@ -23,37 +23,38 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 });
 
-function createCards() {
-    const images = ["img/bild1.jpg", "img/bild2.jpg", "img/bild3.jpg", "img/bild4.jpg", "img/bild5.jpg", "img/bild6.jpg", "img/bild7.jpg", "img/bild8.jpg", "img/bild9.jpg", "img/bild10.jpg", "img/bild1.jpg", "img/bild2.jpg", "img/bild3.jpg", "img/bild4.jpg", "img/bild5.jpg", "img/bild6.jpg", "img/bild7.jpg", "img/bild8.jpg", "img/bild9.jpg", "img/bild10.jpg"];
-    const cards = [];
 
-    // Shuffle the images
-    images.sort(() => Math.random() - 0.5);
-
-    // Create card elements
-    for (let i = 0; i < images.length; i++) {
-        const card = document.createElement("div");
-        card.classList.add("card");
-        card.dataset.image = images[i];
-        card.dataset.index = i;
-
-        // Set the back image for all cards
-        card.style.backgroundImage = 'url("card-back.jpg")'; // Passe dies entsprechend an deinem Dateipfad an
-        card.innerText = "";
-
-        card.addEventListener("click", flipCard);
-        cards.push(card);
-    }
-
-    return cards;
-}
-
+const images = ["img/bild1.jpg", "img/bild2.jpg", "img/bild3.jpg", "img/bild4.jpg", "img/bild5.jpg", "img/bild6.jpg", "img/bild7.jpg", "img/bild8.jpg", "img/bild9.jpg", "img/bild10.jpg", "img/bild1.jpg", "img/bild2.jpg", "img/bild3.jpg", "img/bild4.jpg", "img/bild5.jpg", "img/bild6.jpg", "img/bild7.jpg", "img/bild8.jpg", "img/bild9.jpg", "img/bild10.jpg"];
+let cards = [];
 let flippedCards = [];
 let matchedPairs = 0;
 let pairsFound = 0;
 let isCardFlipped = false;
 let timerInterval;
 let seconds = 0;
+
+const gameContainer = document.getElementById("game-container");
+const message = document.getElementById("message");
+const timer = document.getElementById("timer");
+
+// Shuffle the images
+images.sort(() => Math.random() - 0.5);
+
+// Create card elements
+for (let i = 0; i < images.length; i++) {
+    const card = document.createElement("div");
+    card.classList.add("card");
+    card.dataset.image = images[i];
+    card.dataset.index = i;
+
+    // Set the back image for all cards
+    card.style.backgroundImage = `url(img/card-back.jpg)`;
+    card.innerText = "";
+
+    card.addEventListener("click", flipCard);
+    gameContainer.appendChild(card);
+    cards.push(card);
+}
 
 // Function to flip a card
 function flipCard() {
@@ -74,7 +75,7 @@ function flipCard() {
 // Function to check if two flipped cards match
 function checkMatch() {
     const [card1, card2] = flippedCards;
-    
+
     if (card1.dataset.image === card2.dataset.image) {
         card1.removeEventListener("click", flipCard);
         card2.removeEventListener("click", flipCard);
@@ -90,8 +91,8 @@ function checkMatch() {
             showMessage(`Gratulation! Du hast es geschafft! Zeit: ${seconds} Sekunden`);
         }
     } else {
-        card1.style.backgroundImage = 'url("card-back.jpg")';
-        card2.style.backgroundImage = 'url("card-back.jpg")';
+        card1.style.backgroundImage = `url(img/card-back.jpg)`;
+        card2.style.backgroundImage = `url(img/card-back.jpg)`;
         card1.innerText = "";
         card2.innerText = "";
     }
@@ -117,7 +118,7 @@ function showMessage(messageText) {
 // Function to save game data (time and player name) to the database
 function saveGameData(messageText) {
     const playerName = prompt("Bitte gib deinen Namen ein:");
-    
+
     if (!playerName) {
         return; // Wenn kein Spielername eingegeben wurde, breche ab
     }
@@ -142,72 +143,39 @@ function saveGameData(messageText) {
 }
 
 // Function to show a question in a pop-up
-async function showQuestion() {
-    try {
-        // Annahme: Die Quiz-Fragen sind in Supabase gespeichert
-        const { data, error } = await supabase.from('quizzes').select('*');
+function showQuestion() {
+    // Hier wird die Frage aus der Datenbank abgerufen und angezeigt
+    fetchRandomQuestion()
+        .then((questionData) => {
+            const questionText = questionData.fragesatz;
+            const correctAnswer = questionData.antwort;
 
-        if (error) {
-            console.error('Fehler beim Abrufen von Quiz-Daten aus Supabase:', error);
-            return;
-        }
+            const userAnswer = prompt(questionText);
 
-        const quizData = data[0]?.quizData || [];
-        const randomQuestion = quizData[Math.floor(Math.random() * quizData.length)];
+            if (userAnswer && userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+                // Richtige Antwort: Zeit abziehen (minus 5 Sekunden)
+                seconds -= 5;
+                if (seconds < 0) {
+                    seconds = 0;
+                }
+            } else {
+                // Falsche Antwort: Zeit hinzufügen (plus 20 Sekunden)
+                seconds += 20;
+            }
 
-        const questionContainer = document.getElementById("question-container");
-        questionContainer.innerHTML = `
-            <div class="message-box">
-                <div class="message-content">
-                    <p>${randomQuestion.question}</p>
-                    <button id="answer-yes">Ja</button>
-                    <button id="answer-no">Nein</button>
-                </div>
-            </div>
-        `;
-
-        const answerYesButton = document.getElementById("answer-yes");
-        const answerNoButton = document.getElementById("answer-no");
-
-        answerYesButton.addEventListener("click", function () {
-            handleAnswer(randomQuestion, "Ja");
+            // Aktualisierte Zeit anzeigen
+            timer.textContent = `Zeit: ${seconds} Sekunden`;
         });
-
-        answerNoButton.addEventListener("click", function () {
-            handleAnswer(randomQuestion, "Nein");
-        });
-    } catch (error) {
-        console.error('Ein unerwarteter Fehler ist aufgetreten:', error);
-    }
-}
-
-// Function to handle user's answer
-function handleAnswer(question, userAnswer) {
-    const correctAnswer = question.answer;
-
-    if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
-        // Richtige Antwort: Zeit abziehen (minus 15 Sekunden)
-        seconds -= 15;
-        if (seconds < 0) {
-            seconds = 0;
-        }
-    } else {
-        // Falsche Antwort: Zeit hinzufügen (plus 30 Sekunden)
-        seconds += 30;
-    }
-
-    // Aktualisierte Zeit anzeigen
-    timer.textContent = `Zeit: ${seconds} Sekunden`;
-
-    // Fragen-Container leeren
-    const questionContainer = document.getElementById("question-container");
-    questionContainer.innerHTML = "";
-
-    // Weitere Logik hier, wenn benötigt
 }
 
 // Start the timer
-timerInterval = setInterval(function() {
+timerInterval = setInterval(function () {
     seconds++;
     timer.textContent = `Zeit: ${seconds} Sekunden`;
 }, 1000);
+
+// Funktion, um eine zufällige Frage aus der Datenbank abzurufen
+function fetchRandomQuestion() {
+    return fetch('/get-random-question') // Hier sollte der Endpunkt für die Abfrage der Frage aus der Datenbank stehen
+        .then((response) => response.json());
+}
