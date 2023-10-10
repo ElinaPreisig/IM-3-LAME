@@ -1,35 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles_index.css">
     <title>Startseite</title>
-    <script src="https://unpkg.com/@supabase/supabase-js@2"> </script>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1.29.0/dist/umd/supabase.min.js"></script>
 </head>
 
 <body>
-<div class="container">
-    <a href="index.html"></a><img src="img/logo.png" alt="Logo" class="logo">
-    <img src="img/elgatto.png" alt="Katze" class="katze" onclick="playSoundEffect()">
+    <div class="container">
+        <a href="index.html">
+            <img src="img/logo.png" alt="Logo" class="logo">
+        </a>
+        <img src="img/elgatto.png" alt="Katze" class="katze" onclick="playSoundEffect()">
 
-    <div class="button-container">
-        <a href="quiz_erstellen.html"><button>Eigenes Spiel erstellen</button></a>
-        <a href="suche.html"><button> Bestehendes Quiz spielen</button></a>
+        <div class="button-container">
+            <a href="quiz_erstellen.html"><button>Eigenes Spiel erstellen</button></a>
+            <a href="suche.html"><button>Bestehendes Quiz spielen</button></a>
+        </div>
     </div>
-</div>
-   <!-- Audio-Element für den Soundeffekt -->
-   <audio id="soundEffect">
-    <source src="audio/mpeg/moew01.mp3" type="audio/mpeg">
-    <!-- Füge hier alternative Quellen oder Formate für den Soundeffekt hinzu -->
-</audio>
 
-<script>
-    function playSoundEffect() {
-        var audio = document.getElementById('soundEffect');
-        audio.play();
-    }
-</script>
+    <!-- Audio-Element für den Soundeffekt -->
+    <audio id="soundEffect">
+        <source src="audio/mpeg/moew01.mp3" type="audio/mpeg">
+        <!-- Füge hier alternative Quellen oder Formate für den Soundeffekt hinzu -->
+    </audio>
 
-<script type="module" src="js/test.js"></script>
+    <script>
+        function playSoundEffect() {
+            var audio = document.getElementById('soundEffect');
+            audio.play();
+        }
+    </script>
+
+    <script type="module" src="js/test.js"></script>
 </body>
 </html>
+
