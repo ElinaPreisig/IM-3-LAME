@@ -28,7 +28,7 @@ async function insertQuizname() {
     };
 
     const generatedPassword = await generateRandomNumericPassword(5);
-    const { data, error } = await supa.from('Quiz').insert([
+    const { data, error} = await supa.from('Quiz').insert([
         {
             name: name_quiz.value,
             erstelldatum: getCurrentDate(),
@@ -71,58 +71,66 @@ async function getID() {
     console.log(quizId);
 }
 
-let fragen = ['#frage1', '#frage2', '#frage3', '#frage4', '#frage5'];
-let antwort = ['#antwort1', '#antwort2', '#antwort3', '#antwort4', '#antwort5'];
-
 async function insertFragen() {
+    // Define the arrays outside of the loop
+    const fragenIDs = ['#frage1', '#frage2', '#frage3', '#frage4', '#frage5'];
+    const antwortenIDs = ['#antwort1', '#antwort2', '#antwort3', '#antwort4', '#antwort5'];
+
+    let results = [];
+
     for (let i = 0; i < 5; i++) {
 
-        const frageI = document.querySelector(fragen[i]);
-        if (!frageI) {
+        const fragenElement = document.querySelector(fragenIDs[i]);
+        if (!fragenElement) {
             console.error('Element frage' + (i + 1) + ' wurde nicht gefunden.');
             continue;
         }
 
-        const antwortI = document.querySelector(antwort[i])
+        const antwortenElement = document.querySelector(antwortenIDs[i]);
 
         let antwortcheckbox;
 
-        if (antwortI.checked) {
+        if (antwortenElement.checked) {
             antwortcheckbox = true;
+            console.log("Slider aktiv");
         } else {
             antwortcheckbox = false;
+            console.log("Slider inaktiv");
         }
 
-            const { data, error } = await supa.from('Fragen').insert(
-                [
-                    {
-                        fragesatz: frageI.value,
-                        antwort: antwortcheckbox,
-                    }
-                ]
-
-            );
+        const {data, error} = await supa.from('Fragen').insert(
+            [
+                {
+                    fragesatz: fragenElement.value,
+                    antwort: antwortcheckbox,
+                    //quiz_Id: 
+                }
+            ]
+        );
 
         if (data) {
+            results.push(data);
             console.log('Entry was created successfully', data);
         } else {
-            console.log('Error occured')
+            console.log('Error occured', error);
         }
-    
-}
+    }
+
+    return results; // Return results if needed for further processing
 }
 
-/*for (let i = 0; i <= 5; i++) {
 
-    const frage = document.querySelector(fragen[i]);
+    /*for (let i = 0; i <= 5; i++) {
 
-    
-    const { data } = await supa.from("Fragen").insert([
-        {
-            fragesatz: frage.value,
-        }
-    ]);
-}
+        const frage = document.querySelector(fragen[i]);
+
+        
+        const { data } = await supa.from("Fragen").insert([
+            {
+                fragesatz: frage.value,
+            }
+        ]);
+    }
 */
 /*
     if (data) {
