@@ -1,5 +1,51 @@
 import { supa } from "../supabase.js";
 
+let allefragen;
+let momentaneFrage;
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    const jabutton = document.getElementById('jabutton');
+    jabutton.addEventListener('click', checkanswerja);
+    const neinbutton = document.getElementById('neinbutton');
+    neinbutton.addEventListener('click', checkanswernein);
+});
+
+
+function checkanswerja(answer){
+
+        checkanswer(true)
+        console.log('checkanswerja')
+}
+
+function checkanswernein(answer){
+    
+    checkanswer(false)
+    console.log('checkanswernein')
+}
+
+
+function checkanswer(answer) {
+    // if (userAnswer && userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+        if (true) {
+            // Richtige Antwort: Zeit abziehen (minus 5 Sekunden)
+            seconds -= 5;
+            if (seconds < 0) {
+                seconds = 0;
+            }
+        } else {
+            // Falsche Antwort: Zeit hinzufügen (plus 20 Sekunden)
+            seconds += 20;
+        }
+        {
+            // Aktualisierte Zeit anzeigen
+            timer.textContent = `Zeit: ${seconds} Sekunden`;
+        }
+}
+
+
+
+
+
 //this code gets the url parameter, which is the name of the quiz
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString)
@@ -159,32 +205,14 @@ function saveGameData(messageText) {
 }
 
 async function showQuestion() {
-        const allefragen = await allefragenholen()
-        console.log('alle fragen innerhalb von show questions', allefragen)
-        const questiondiv = document.getElementById('question')
-        questiondiv.innerHTML = `<div>${allefragen[0].fragesatz}</div>` + 
-        `<input type="button" value="Ja" onclick="checkanswer(TRUE)">` +
-        `<input type="button" value="Nein" onclick="checkanswer(FALSE)">`
+    allefragen = await allefragenholen()
+    console.log('alle fragen innerhalb von show questions', allefragen)
+    const questionsatz = document.getElementById('satz')
+    momentaneFrage = allefragen[0]
+    questionsatz.innerHTML = `${momentaneFrage.fragesatz}`
 
-        const userAnswer = prompt(questionText);
+}
 
-            if (userAnswer && userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
-                // Richtige Antwort: Zeit abziehen (minus 5 Sekunden)
-                seconds -= 5;
-                if (seconds < 0) {
-                    seconds = 0;
-                }
-            } else {
-                // Falsche Antwort: Zeit hinzufügen (plus 20 Sekunden)
-                seconds += 20;
-            }
-
-            // Aktualisierte Zeit anzeigen
-            timer.textContent = `Zeit: ${seconds} Sekunden`;
-
-    }
-
-    
 
 
 // // Function to show a question in a pop-up
