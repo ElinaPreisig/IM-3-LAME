@@ -157,11 +157,15 @@ button:hover{
     margin-bottom: 10px; /* Abstand zwischen den Suchergebnissen */
     font-size: 1.2em; /* Schriftgröße für die Suchergebnisse */
     cursor: pointer; /* Zeige einen Zeiger-Cursor beim Überfahren der Suchergebnisse */
+    text-decoration: none;
 }
+
+
 
 #suchergebnis-container div:hover {
     background-color: #c6b891; /* Hintergrundfarbe ändern, wenn das Suchergebnis überfahren wird */
     color: #ffffff; /* Textfarbe ändern, wenn das Suchergebnis überfahren wird */
+    text-decoration: none;
 }
 
 /* CSS für den "Jetzt Spielen"-Button */
