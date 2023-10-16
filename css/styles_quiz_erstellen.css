@@ -173,7 +173,7 @@ body {
 }
 
 input:checked + .slider {
-    background-color: green;
+    background-color: #a6c2da;
 }
 
 input:focus + .slider {
@@ -186,13 +186,13 @@ input:checked + .slider:before {
     transform: translateX(26px);
 }
 
-.answer.active .slider {
-    background-color: red;
-}
+/*.answer.active .slider {
+    color: red;
+}*/
 
-.answer.active input:checked + .slider:before {
+/*.answer.active input:checked + .slider:before {
     background-color: green;
-}
+}*/
 
 /* Pop-up Modal Styles */
 .modal {

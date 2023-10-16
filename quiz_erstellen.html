@@ -13,7 +13,7 @@
 <body>
 <div class="container">
     <a href="index.html"><img src="img/logo.png" alt="Logo" class="logo"> <a href="index.html"></a>
-    <img src="img/elgatto.png" alt="Katze" class="katze">
+    <img src="img/elgatto.png" alt="Katze" class="katze" onclick="playSoundEffect()">
     <div class="quiz-container">
 
 
@@ -23,26 +23,23 @@
                 <input type="text" id= "name_quiz" placeholder="Titel deines Spieles eingeben*" required>
                 <div class="answer">
                     <div class="answer">
-                        <label class="switch">
-                            <input type="checkbox">
-                            <span class="slider"></span>
-                        </label>
+                        <div class="labels">
+                            <label>Nein/</label>
+                            <label>Ja</label>
+                        </div>
                     </div>
                 </div>
             </div>
 
-        <div class="question-container">
-            <div class="labels">
-                <label>Ja/</label>
-                <label>Nein</label>
-            </div>
+    
+           
             <div class="question">
                 <label for="frage1"></label>
                 <input type="text" id="frage1" placeholder="Frage 1*" required>
                 <div class="answer">
                     <div class="answer">
                         <label class="switch">
-                            <input type="checkbox" id="=antwort1">
+                            <input type="checkbox" id="antwort1">
                             <span class="slider"></span>
                         </label>
                     </div>
@@ -55,7 +52,7 @@
                     
                     <div class="answer">
                         <label class="switch">
-                            <input type="checkbox" id="=antwort2">
+                            <input type="checkbox" id="antwort2">
                             <span class="slider"></span>
                         </label>
                     </div>        
@@ -68,7 +65,7 @@
                     
                     <div class="answer">
                         <label class="switch">
-                            <input type="checkbox" id="=antwort3">
+                            <input type="checkbox" id="antwort3">
                             <span class="slider"></span>
                         </label>
                     </div>     
@@ -81,7 +78,7 @@
                    
                     <div class="answer">
                         <label class="switch">
-                            <input type="checkbox" id="=antwort4">
+                            <input type="checkbox" id="antwort4">
                             <span class="slider"></span>
                         </label>
                     </div>
@@ -94,14 +91,18 @@
               
                     <div class="answer">
                         <label class="switch">
-                            <input type="checkbox" id="=antwort5">
+                            <input type="checkbox" id="antwort5">
                             <span class="slider"></span>
                         </label>
                     </div>                
                 </div>
             </div>
+            <div>
+                <button class="confirm-button">Bestätigen</button>
+            </div>
+            
         </div>
-        <button class="confirm-button">Bestätigen</button>
+        
     </div>
 </div>
 <div class="modal">
@@ -119,6 +120,17 @@
 </div>
 <script type="module" src="js/script_quiz_erstellen.js"></script>
 <script type="module" src="supabase.js"></script>
+  <!-- Audio-Element für den Soundeffekt -->
+  <audio id="soundEffect">
+    <source src="audio/mpeg/moew01.mp3" type="audio/mpeg">
+    <!-- Füge hier alternative Quellen oder Formate für den Soundeffekt hinzu -->
+</audio>
+<script>
+    function playSoundEffect() {
+        var audio = document.getElementById('soundEffect');
+        audio.play();
+    }
+</script>
 
 </body>
 

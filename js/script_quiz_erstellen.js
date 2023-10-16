@@ -1,13 +1,6 @@
 import { supa } from "../supabase.js";
-console.log("Hallo Test");
+console.log("Initialisierung abgeschlossen");
 
-
-
-
-/*const btn = document.querySelector(".confirm-button");
-btn.addEventListener('click', insertQuizname);
-btn.addEventListener('click', insertFragen);*/
-/*btn.addEventListener('click', insertFrage1);
 
 /Function für Quizname/
 /* Passwortgenerator*/
@@ -23,6 +16,7 @@ async function generateRandomNumericPassword(length) {
 }
 
 async function insertQuizname() {
+    const insertPromises = [];
     const name_quiz = document.querySelector('#name_quiz');
 
     const getCurrentDate = () => {
@@ -30,22 +24,23 @@ async function insertQuizname() {
         const day = String(now.getDate()).padStart(2, '0');
         const month = String(now.getMonth() + 1).padStart(2, '0');
         const year = now.getFullYear();
-        return `${day}.${month}.${year}`;
+        return `${year}.${month}.${day}`;
     };
 
-    const generatedPassword = await generateRandomNumericPassword(7);
-    const { data } = await supa.from("Quiz").insert([
+    const generatedPassword = await generateRandomNumericPassword(5);
+    const { data, error } = await supa.from('Quiz').insert([
         {
             name: name_quiz.value,
             erstelldatum: getCurrentDate(),
             passwort: generatedPassword,
         }
     ]);
-
+    insertPromises.push(data);
+    console.log(generatedPassword);
     if (data) {
         console.log('Entry was created successfully', data);
     } else {
-        console.log('Error occured')
+        console.log('Error occured', error)
     }
 }
 
@@ -71,36 +66,73 @@ async function insertFrage1() {
 
 */
 /* Function für Fragen*/
-async function TEST() {
+async function getID() {
     const quizId = await supa.from("Quiz").select("id").eq("name", document.querySelector('#name_quiz').value);
     console.log(quizId);
 }
+
+let fragen = ['#frage1', '#frage2', '#frage3', '#frage4', '#frage5'];
+let antwort = ['#antwort1', '#antwort2', '#antwort3', '#antwort4', '#antwort5'];
+
 async function insertFragen() {
+    for (let i = 0; i < 5; i++) {
 
+        const frageI = document.querySelector(fragen[i]);
+        if (!frageI) {
+            console.error('Element frage' + (i + 1) + ' wurde nicht gefunden.');
+            continue;
+        }
 
-    for (let i = 1; i <= 5; i++) {
+        const antwortI = document.querySelector(antwort[i])
 
-        const frage = document.querySelector(`#frage${i}`);
-        const antwortCheckbox = document.querySelector(`#antwort${i}`);
-        const antwort = antwortCheckbox.checked;
+        let antwortcheckbox;
 
-        /* console.log(Frage ${i}: ${frage.value});*/
-        const { data } = await supa.from("Fragen").insert([
-            {
-                fragesatz: frage.value,
-                antwort: antwort,
-                quiz_id: quizId,
-            }
-        ]);
-    }
+        if (antwortI.checked) {
+            antwortcheckbox = true;
+        } else {
+            antwortcheckbox = false;
+        }
 
+            const { data, error } = await supa.from('Fragen').insert(
+                [
+                    {
+                        fragesatz: frageI.value,
+                        antwort: antwortcheckbox,
+                    }
+                ]
 
-    if (data) {
-        console.log('Frage ${i} wurde erfolgreich eingefügt');
-    } else {
-        console.log('Fehler beim Einfügen von Frage ${i}:');
-    }
+            );
+
+        if (data) {
+            console.log('Entry was created successfully', data);
+        } else {
+            console.log('Error occured')
+        }
+    
 }
+}
+
+/*for (let i = 0; i <= 5; i++) {
+
+    const frage = document.querySelector(fragen[i]);
+
+    
+    const { data } = await supa.from("Fragen").insert([
+        {
+            fragesatz: frage.value,
+        }
+    ]);
+}
+*/
+/*
+    if (data) {
+        console.log('Frage' + [i] + 'wurde erfolgreich eingefügt');
+    } else {
+        console.log('Fehler beim Einfügen von Frage');
+    }
+    */
+
+
 
 
 document.addEventListener("DOMContentLoaded", function () {
