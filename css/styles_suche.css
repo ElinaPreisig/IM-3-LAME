@@ -192,4 +192,14 @@ button:hover{
         position: absolute;
         right: 8%;
     }
+
+    .button-suchen {
+        margin-top: 300px; /* Passen Sie den oberen Abstand an */
+    }
+
+    .button-bestenliste {
+        position: relative; /* Zurücksetzen der Positionseigenschaft */
+        bottom: 0; /* Zurücksetzen der Positionseigenschaft */
+        right: auto; /* Zurücksetzen der Positionseigenschaft */
+    }
 }
