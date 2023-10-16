@@ -29,7 +29,7 @@ async function suche() {
                 const editEmoji = '🔄';
 
                 const playLink = document.createElement("a");
-                playLink.href = "memory.html";
+                playLink.href = "memory.html" + `?spiel=${item.id}`;
                 playLink.innerHTML = playEmoji;
         
                 const editLink = document.createElement("a");

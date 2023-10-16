@@ -1,5 +1,19 @@
 import { supa } from "../supabase.js";
 
+//this code gets the url parameter, which is the name of the quiz
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString)
+const spielid = urlParams.get('spiel')
+console.log(spielid);
+
+//jetzt holen wir uns die Daten des Quizzes
+//select
+async function allefragenholen() {
+    const { data, error } = await supa.from("Fragen").select().eq('quiz_id', `${spielid}`);
+    return data;
+  }
+  
+  console.log('allefragenholen', allefragenholen());
 
 document.addEventListener("DOMContentLoaded", async function () {
     try {
@@ -81,8 +95,10 @@ function checkMatch() {
         card2.removeEventListener("click", flipCard);
         matchedPairs++;
         pairsFound++;
+        pairsFound = 2; //Unbedingt SPàTER LÖSCHEN!èèèèè!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         if (pairsFound === 2) {
             // Nach zwei gefundenen Pärchen eine Frage anzeigen
+            console.log('showQuestion')
             showQuestion();
             pairsFound = 0;
         }
@@ -124,9 +140,9 @@ function saveGameData(messageText) {
     }
 
     // Hier wird die Zeit und der Spielername in die Datenbank gespeichert
-    const supabase = supabase.createClient('https://tenojoxlyquvqackgeif.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRlbm9qb3hseXF1dnFhY2tnZWlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTYzMTY3NzAsImV4cCI6MjAxMTg5Mjc3MH0.4ZX9-F1GNCgWSmLleh5QLyDNkE1MljglPV54eemu-2w');
+    // const supa = supa.createClient('https://tenojoxlyquvqackgeif.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRlbm9qb3hseXF1dnFhY2tnZWlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTYzMTY3NzAsImV4cCI6MjAxMTg5Mjc3MH0.4ZX9-F1GNCgWSmLleh5QLyDNkE1MljglPV54eemu-2w');
 
-    supabase
+    supa
         .from('users') // Stelle sicher, dass dies auf deine Users-Tabelle in der Datenbank verweist
         .upsert([
             {
@@ -142,15 +158,15 @@ function saveGameData(messageText) {
         });
 }
 
-// Function to show a question in a pop-up
-function showQuestion() {
-    // Hier wird die Frage aus der Datenbank abgerufen und angezeigt
-    fetchRandomQuestion()
-        .then((questionData) => {
-            const questionText = questionData.fragesatz;
-            const correctAnswer = questionData.antwort;
+async function showQuestion() {
+        const allefragen = await allefragenholen()
+        console.log('alle fragen innerhalb von show questions', allefragen)
+        const questiondiv = document.getElementById('question')
+        questiondiv.innerHTML = `<div>${allefragen[0].fragesatz}</div>` + 
+        `<input type="button" value="Ja" onclick="checkanswer(TRUE)">` +
+        `<input type="button" value="Nein" onclick="checkanswer(FALSE)">`
 
-            const userAnswer = prompt(questionText);
+        const userAnswer = prompt(questionText);
 
             if (userAnswer && userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
                 // Richtige Antwort: Zeit abziehen (minus 5 Sekunden)
@@ -165,8 +181,37 @@ function showQuestion() {
 
             // Aktualisierte Zeit anzeigen
             timer.textContent = `Zeit: ${seconds} Sekunden`;
-        });
-}
+
+    }
+
+    
+
+
+// // Function to show a question in a pop-up
+// function showQuestion() {
+//     // Hier wird die Frage aus der Datenbank abgerufen und angezeigt
+//     fetchRandomQuestion()
+//         .then((questionData) => {
+//             const questionText = questionData.fragesatz;
+//             const correctAnswer = questionData.antwort;
+
+//             const userAnswer = prompt(questionText);
+
+//             if (userAnswer && userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+//                 // Richtige Antwort: Zeit abziehen (minus 5 Sekunden)
+//                 seconds -= 5;
+//                 if (seconds < 0) {
+//                     seconds = 0;
+//                 }
+//             } else {
+//                 // Falsche Antwort: Zeit hinzufügen (plus 20 Sekunden)
+//                 seconds += 20;
+//             }
+
+//             // Aktualisierte Zeit anzeigen
+//             timer.textContent = `Zeit: ${seconds} Sekunden`;
+//         });
+// }
 
 // Start the timer
 timerInterval = setInterval(function () {
