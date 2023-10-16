@@ -124,11 +124,6 @@ button:hover{
     color: #4d79ff;
 }
 
-
-.button-bestenliste button:first-child{
-
-}
-
 .popup {
     display: none;
     position: absolute;
