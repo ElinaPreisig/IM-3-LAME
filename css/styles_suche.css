@@ -79,8 +79,6 @@ button {
 button:hover{
     background-color:#ffffff; 
     color:#4d79ff; 
-    border-style:solid; 
-    border-width:2px;
 }
 
 .button-suchen {
@@ -114,32 +112,27 @@ button:hover{
 .button-suchen .search-button:hover {
     background-color: #ffffff;
     color: #4d79ff;
-    border-style: solid;
-    border-width: 2px;
 }
 
 .button-bestenliste{
-    display:flex; 
-    flex-direction:row; 
     margin-top: 10px;
     color: white;
     text-decoration: none;
+    right: 40px;
 }
 
 .button-bestenliste a{
-    display:flex; 
-    flex-direction:row; 
     margin-top: 10px;
     text-decoration: none;
     color: #ffffff;
+    right: 40px;
 }
 
 .button-bestenliste:hover a{
-    display:flex; 
-    flex-direction:row; 
     margin-top: 10px;
     text-decoration: none;
     color: #4d79ff;
+    right: 40px;
 }
 
 
