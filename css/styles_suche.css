@@ -129,15 +129,6 @@ button:hover{
     margin-right:auto;
 }
 
-/* Styling für die Icons */
-.fa-play,
-.fa-edit {
-    font-size: 20px; /* Passen Sie die Größe der Icons an */
-    margin-left: 10px; /* Fügen Sie Abstand zwischen den Icons hinzu */
-    color: #007bff; /* Ändern Sie die Farbe der Icons nach Bedarf */
-}
-
-/* CSS für das Popup-Fenster */
 .popup {
     display: none;
     position: absolute;
