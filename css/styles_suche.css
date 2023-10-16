@@ -183,7 +183,7 @@ button:hover{
 
 @media (max-width: 900px) {
     .button-container {
-        flex-direction: column;
+        display: block;
     }
 
     .logo {
