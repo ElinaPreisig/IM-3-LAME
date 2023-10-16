@@ -18,6 +18,7 @@ async function generateRandomNumericPassword(length) {
 async function insertQuizname() {
     const insertPromises = [];
     const name_quiz = document.querySelector('#name_quiz');
+    const passwortDiv = document.querySelector('.modal-body p');
 
     const getCurrentDate = () => {
         const now = new Date();
@@ -39,6 +40,7 @@ async function insertQuizname() {
     console.log(generatedPassword);
     if (data) {
         console.log('Entry was created successfully', data);
+        passwortDiv.textContent = `Passwort zum Bearbeiten: ${generatedPassword}`;
     } else {
         console.log('Error occured', error)
     }
@@ -78,6 +80,16 @@ async function insertFragen() {
 
     let results = [];
 
+    // Get the quiz_id from another table
+    const { data , error } = await supa.from('Quiz').select('id').eq('name', document.querySelector('#name_quiz').value);
+
+    if (error) {
+        console.error('Error fetching quiz_id from other table', error);
+        return;
+    }
+
+    const quizId = data[0].id; // Assuming quiz_id is in the first element
+
     for (let i = 0; i < 5; i++) {
 
         const fragenElement = document.querySelector(fragenIDs[i]);
@@ -103,7 +115,7 @@ async function insertFragen() {
                 {
                     fragesatz: fragenElement.value,
                     antwort: antwortcheckbox,
-                    //quiz_Id: 
+                    quiz_id: quizId,
                 }
             ]
         );
