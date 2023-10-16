@@ -8,7 +8,8 @@ async function suche() {
     const { data, error } = await supa
         .from('Quiz')
         .select()
-        .like('name', `%${suchtext}%`); // Suche nach ähnlichen Namen
+        .like('name', `%${suchtext}%`)
+        .limit(5); // Suche nach ähnlichen Namen
 
     if (error) {
         console.error('Fehler bei der Datenbankabfrage:', error);
