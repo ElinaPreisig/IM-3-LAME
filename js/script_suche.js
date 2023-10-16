@@ -8,8 +8,7 @@ async function suche() {
     const { data, error } = await supa
         .from('Quiz')
         .select()
-        .like('name', `%${suchtext}%`)
-        .limit(5); // Suche nach ähnlichen Namen
+        .like('name', `%${suchtext}%`); 
 
     if (error) {
         console.error('Fehler bei der Datenbankabfrage:', error);
@@ -25,12 +24,69 @@ async function suche() {
         // Durch die Suchergebnisse iterieren und für jedes Ergebnis ein <div> erstellen    
         data.forEach((item) => {
                 const suchergebnisDiv = document.createElement("div");
-
-                suchergebnisDiv.innerHTML = `${item.name}`;
                 
+                const playEmoji = '▶️'; 
+                const editEmoji = '🔄';
+
+                const playLink = document.createElement("a");
+                playLink.href = "memory.html";
+                playLink.innerHTML = playEmoji;
+        
+                const editLink = document.createElement("a");
+                editLink.href = "www.wikipedia.com";
+                editLink.innerHTML = editEmoji;
+
+                suchergebnisDiv.appendChild(document.createTextNode(`${item.name} `));
+                suchergebnisDiv.appendChild(playLink);
+                suchergebnisDiv.appendChild(document.createTextNode(" "));
+                suchergebnisDiv.appendChild(editLink);
+
+                editLink.addEventListener("click", async function(event) {
+                    event.preventDefault();
+
+                    const popupDiv = document.createElement("div");
+                    popupDiv.classList.add("popup");
+
+                    const passwordInput = document.createElement("input");
+                    passwordInput.type = "password";
+                    passwordInput.placeholder = "Quiz-Passwort eingeben";
+
+                    const confirmButton = document.createElement("button");
+                    confirmButton.textContent = "Bestätigen";
+
+                    popupDiv.appendChild(passwordInput);
+                    popupDiv.appendChild(confirmButton);
+
+                    document.body.appendChild(popupDiv);
+
+                    confirmButton.addEventListener("click", async function() {
+                        const passwortEingabe = passwordInput.value;
+                        const { data: quizData, error: quizError } = await supa
+                            .from('Quiz')
+                            .select('name, passwort')
+                            .eq('name', item.name);
+
+                        if (quizError) {
+                            console.error('Fehler bei der Datenbankabfrage:', quizError);
+                        }
+
+                        if (passwortEingabe === quizData[0].passwort) {
+                            window.location.href = editLink.href = 'quiz_erstellen.html';
+                            // Fügen Sie hier die Logik zum Anzeigen der Fragen ein
+                        } else {
+                            const errorPopupDiv = document.createElement("div");
+                            errorPopupDiv.classList.add("popup", "error");
+                            const errorMessage = document.createElement("p");
+                            errorMessage.textContent = "Falsches Passwort! Zugriff verweigert.";
+                            errorPopupDiv.appendChild(errorMessage);
+                            document.body.appendChild(errorPopupDiv);
+                        }
+                        document.body.removeChild(popupDiv);
+                    });
+                });
+
                 suchergebnisContainer.appendChild(suchergebnisDiv);
             });
-    
     } else {
         // Keine Suchergebnisse gefunden
         const keineErgebnisseDiv = document.createElement("div");
@@ -47,22 +103,4 @@ document.addEventListener('DOMContentLoaded', (event) => {
 document.addEventListener('DOMContentLoaded', (event) => {
     const suchergebnis1 = document.getElementById('suchergebnis1');
     suchergebnis1.addEventListener('click', suche)
-})
-
-console.log("suchergebnis1:", data);
-
-// Hier wird das Suchergebnis auf der Webseite angezeigt
-const suchergebnis1 = document.getElementById("suchergebnis1");
-suchergebnis1.innerHTML = ""; // Löschen Sie vorherige Suchergebnisse
-
-if (data) {
-    // Durch die Suchergebnisse iterieren und für jedes Ergebnis ein <div> erstellen    
-    data.forEach((item) => {
-            const suchergebnis1Div = document.createElement("div");
-
-            suchergebnis1Div.innerHTML = `${item.passwort}`;
-            
-            suchergebnis1.appendChild(suchergebnis1Div);
-        });
-
-} 
+});
