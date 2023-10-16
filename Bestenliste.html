@@ -38,6 +38,13 @@
         <source src="audio/mpeg/moew01.mp3" type="audio/mpeg">
         <!-- Füge hier alternative Quellen oder Formate für den Soundeffekt hinzu -->
     </audio>
+    
+    <script>
+        function playSoundEffect() {
+            var audio = document.getElementById('soundEffect');
+            audio.play();
+        }
+    </script>
 
     <script type="module" src="js/bestenListe.js"></script>
     <script type="module" src="supabase.js"></script>

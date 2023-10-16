@@ -192,7 +192,9 @@ button:hover{
     }
 
     .logo {
-        max-width: none; /* Das Logo behält seine ursprüngliche Größe bei */
-        width: auto;
+        max-width: flex; /* Das Logo behält seine ursprüngliche Größe bei */
+        width: 67%;
+        position: absolute;
+        right: 8%;
     }
 }
