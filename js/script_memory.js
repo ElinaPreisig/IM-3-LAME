@@ -4,7 +4,8 @@ import { supa } from "../supabase.js";
 document.addEventListener("DOMContentLoaded", async function () {
     try {
         // Abrufen der Quiz-Daten aus Supabase
-        const { data, error } = await supabase.from('quizzes').select('*');
+        const { data, error } = await supa
+        .from('Quiz').select('*');
 
         if (error) {
             console.error('Fehler beim Abrufen von Quiz-Daten aus Supabase:', error);
@@ -13,9 +14,9 @@ document.addEventListener("DOMContentLoaded", async function () {
             console.log('Quiz-Daten aus Supabase:', quizData);
 
             // Karten erstellen und anzeigen
-            const gameContainer = document.getElementById("game-container");
-            const cards = createCards();
-            cards.forEach(card => gameContainer.appendChild(card));
+        // const gameContainer = document.getElementById("game-container");
+       // const cards = createCards();
+       // cards.forEach(card => gameContainer.appendChild(card));
         }
     } catch (error) {
         console.error('Ein unerwarteter Fehler ist aufgetreten:', error);
