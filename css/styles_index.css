@@ -17,8 +17,10 @@ body {
 .logo {
     position: absolute;
     top: 0;
+    right: 28%;
     width: 40%;
     height: auto;
+    max-width: 100%;
 }
 
 .katze {
@@ -76,7 +78,10 @@ button:hover {
     }
 
     .logo {
-        max-width: none; /* Das Logo behält seine ursprüngliche Größe bei */
-        width: auto;
+        max-width: flex; /* Das Logo behält seine ursprüngliche Größe bei */
+        width: 67%;
+        position: absolute;
+        right: 8%;
+
     }
 }
