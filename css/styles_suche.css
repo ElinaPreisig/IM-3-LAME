@@ -125,25 +125,52 @@ button:hover{
 }
 
 .popup {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 100%;
-    background-color: #ffffff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #4d79ff;
+    padding: 50px 100px 50px 100px;
+    border-radius: 30px;
+    color: white;
+    border-color: #c6b891;
 }
 
-/* CSS für das Passwort-Eingabefeld */
-#password-input {
-    width: 100%;
-    padding: 5px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
+.popup input[type="password"] {
+    padding: 10px 30px 10px 30px;
+    margin: 10px 0;
     border-radius: 5px;
+    border: none;
 }
+
+.popup button {
+    background-color: #ffffff;
+    color: #4d79ff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.popup.error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #ff4d4d; /* Rote Hintergrundfarbe für Fehlermeldung */
+    color: #ffffff; /* Weiße Textfarbe für Fehlermeldung */
+    padding: 30px;
+}
+
+.popup.error p {
+    margin-bottom: 20px;
+}
+
+
 
 /* CSS für die Suchergebnisse */
 #suchergebnis-container {

@@ -43,23 +43,46 @@ async function suche() {
 
                 editLink.addEventListener("click", async function(event) {
                     event.preventDefault();
-                    const passwortEingabe = prompt("Bitte geben Sie das Passwort des Spiels ein:", "");
-                    const { data: quizData, error: quizError } = await supa
-                        .from('Quiz')
-                        .select('name, passwort')
-                        .eq('name', item.name);
 
-                    if (quizError) {
-                        console.error('Fehler bei der Datenbankabfrage:', quizError);
-                    }
+                    const popupDiv = document.createElement("div");
+                    popupDiv.classList.add("popup");
 
-                    if (passwortEingabe === quizData[0].passwort) {
-                        // Zeige Fragen an und führe die gewünschten Aktionen aus
-                        console.log('Passwort korrekt eingegeben. Zeige Fragen an.');
-                        // Fügen Sie hier die Logik zum Anzeigen der Fragen ein
-                    } else {
-                        alert("Falsches Passwort! Zugriff verweigert.");
-                    }
+                    const passwordInput = document.createElement("input");
+                    passwordInput.type = "password";
+                    passwordInput.placeholder = "Quiz-Passwort eingeben";
+
+                    const confirmButton = document.createElement("button");
+                    confirmButton.textContent = "Bestätigen";
+
+                    popupDiv.appendChild(passwordInput);
+                    popupDiv.appendChild(confirmButton);
+
+                    document.body.appendChild(popupDiv);
+
+                    confirmButton.addEventListener("click", async function() {
+                        const passwortEingabe = passwordInput.value;
+                        const { data: quizData, error: quizError } = await supa
+                            .from('Quiz')
+                            .select('name, passwort')
+                            .eq('name', item.name);
+
+                        if (quizError) {
+                            console.error('Fehler bei der Datenbankabfrage:', quizError);
+                        }
+
+                        if (passwortEingabe === quizData[0].passwort) {
+                            window.location.href = editLink.href = 'quiz_erstellen.html';
+                            // Fügen Sie hier die Logik zum Anzeigen der Fragen ein
+                        } else {
+                            const errorPopupDiv = document.createElement("div");
+                            errorPopupDiv.classList.add("popup", "error");
+                            const errorMessage = document.createElement("p");
+                            errorMessage.textContent = "Falsches Passwort! Zugriff verweigert.";
+                            errorPopupDiv.appendChild(errorMessage);
+                            document.body.appendChild(errorPopupDiv);
+                        }
+                        document.body.removeChild(popupDiv);
+                    });
                 });
 
                 suchergebnisContainer.appendChild(suchergebnisDiv);
@@ -80,4 +103,4 @@ document.addEventListener('DOMContentLoaded', (event) => {
 document.addEventListener('DOMContentLoaded', (event) => {
     const suchergebnis1 = document.getElementById('suchergebnis1');
     suchergebnis1.addEventListener('click', suche)
-})
+});
