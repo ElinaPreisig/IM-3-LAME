@@ -18,8 +18,10 @@ body {
 
 .logo {
     position: absolute;
+    display: flex;
     top: 0;
-    width: 25%;
+    right: 31%;
+    width:34%;
     height: auto;
 }
 
@@ -30,25 +32,6 @@ body {
     width: 15%;
     height: auto;
     cursor: pointer; /* Ändere hier: Cursor bei der Katze */
-}
-
-/* CSS für die Suchergebnisse */
-#suchergebnis-container {
-    margin-top: 20px; /* Fügt Abstand zwischen dem Suchfeld und den Suchergebnissen hinzu */
-}
-
-#suchergebnis-container div {
-    background-color: #FFF2CF; /* Hintergrundfarbe für jedes Suchergebnis */
-    border-radius: 10px; /* Abgerundete Ecken */
-    padding: 10px 20px; /* Innenabstand für jedes Suchergebnis */
-    margin-bottom: 10px; /* Abstand zwischen den Suchergebnissen */
-    font-size: 1.2em; /* Schriftgröße für die Suchergebnisse */
-    cursor: pointer; /* Zeige einen Zeiger-Cursor beim Überfahren der Suchergebnisse */
-}
-
-#suchergebnis-container div:hover {
-    background-color: #c6b891; /* Hintergrundfarbe ändern, wenn das Suchergebnis überfahren wird */
-    color: #ffffff; /* Textfarbe ändern, wenn das Suchergebnis überfahren wird */
 }
 
 
@@ -75,6 +58,15 @@ button {
     width: auto;
     height: auto;
 }
+
+.button-bestenliste{
+    position: absolute;
+    bottom: 20px; /* Abstand zum unteren Rand des Containers */
+    right: 200px; /* Abstand zum linken Rand des Containers */
+    color: white;
+    text-decoration: none;
+}
+
 
 button:hover{
     background-color:#ffffff; 
@@ -118,26 +110,23 @@ button:hover{
     margin-top: 10px;
     color: white;
     text-decoration: none;
-    right: 40px;
 }
 
 .button-bestenliste a{
     margin-top: 10px;
     text-decoration: none;
     color: #ffffff;
-    right: 40px;
 }
 
 .button-bestenliste:hover a{
     margin-top: 10px;
     text-decoration: none;
     color: #4d79ff;
-    right: 40px;
 }
 
 
 .button-bestenliste button:first-child{
-    margin-right:auto;
+
 }
 
 .popup {
@@ -159,6 +148,25 @@ button:hover{
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+/* CSS für die Suchergebnisse */
+#suchergebnis-container {
+    margin-top: 30px; /* Fügt Abstand zwischen dem Suchfeld und den Suchergebnissen hinzu */
+}
+
+#suchergebnis-container div {
+    background-color: #FFF2CF; /* Hintergrundfarbe für jedes Suchergebnis */
+    border-radius: 10px; /* Abgerundete Ecken */
+    padding: 10px 20px; /* Innenabstand für jedes Suchergebnis */
+    margin-bottom: 10px; /* Abstand zwischen den Suchergebnissen */
+    font-size: 1.2em; /* Schriftgröße für die Suchergebnisse */
+    cursor: pointer; /* Zeige einen Zeiger-Cursor beim Überfahren der Suchergebnisse */
+}
+
+#suchergebnis-container div:hover {
+    background-color: #c6b891; /* Hintergrundfarbe ändern, wenn das Suchergebnis überfahren wird */
+    color: #ffffff; /* Textfarbe ändern, wenn das Suchergebnis überfahren wird */
 }
 
 /* CSS für den "Jetzt Spielen"-Button */
