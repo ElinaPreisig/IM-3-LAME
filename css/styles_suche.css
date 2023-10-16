@@ -81,13 +81,13 @@ button:hover{
     color:#4d79ff; 
     border-style:solid; 
     border-width:2px;
-
 }
 
 .button-suchen {
     display: flex;
     align-items: baseline; /* Ändern Sie die Ausrichtung auf "baseline" */
     margin-top: 400px;
+    text-decoration: none;
 }
 
 .button-suchen input[type="text"] {
@@ -123,7 +123,25 @@ button:hover{
     flex-direction:row; 
     margin-top: 10px;
     color: white;
+    text-decoration: none;
 }
+
+.button-bestenliste a{
+    display:flex; 
+    flex-direction:row; 
+    margin-top: 10px;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.button-bestenliste:hover a{
+    display:flex; 
+    flex-direction:row; 
+    margin-top: 10px;
+    text-decoration: none;
+    color: #4d79ff;
+}
+
 
 .button-bestenliste button:first-child{
     margin-right:auto;
