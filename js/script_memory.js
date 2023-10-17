@@ -108,7 +108,7 @@ for (let i = 0; i < images.length; i++) {
     card.dataset.index = i;
 
     // Set the back image for all cards
-    card.style.backgroundImage = `url(img/card-back.jpg)`;
+    card.style.backgroundImage = `url(img/LameMemory.jpeg)`;
     card.innerText = "";
 
     card.addEventListener("click", flipCard);
@@ -153,8 +153,8 @@ function checkMatch() {
             showMessage(`Gratulation! Du hast es geschafft! Zeit: ${seconds} Sekunden`);
         }
     } else {
-        card1.style.backgroundImage = `url(img/card-back.jpg)`;
-        card2.style.backgroundImage = `url(img/card-back.jpg)`;
+        card1.style.backgroundImage = `url(img/LameMemory.jpeg)`;
+        card2.style.backgroundImage = `url(img/LameMemory.jpeg)`;
         card1.innerText = "";
         card2.innerText = "";
     }
