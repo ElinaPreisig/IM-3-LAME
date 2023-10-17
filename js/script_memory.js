@@ -2,6 +2,7 @@ import { supa } from "../supabase.js";
 
 let allefragen;
 let momentaneFrage;
+let momentaneFrageIndex=0;
 
 document.addEventListener('DOMContentLoaded', (event) => {
     const jabutton = document.getElementById('jabutton');
@@ -25,8 +26,11 @@ function checkanswernein(answer){
 
 
 function checkanswer(answer) {
+    // Div nach beantworten verschwinden
+    var questionDiv = document.getElementById("question");
+    questionDiv.style.display = "none";
     // if (userAnswer && userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
-        if (true) {
+        if (answer==momentaneFrage.antwort) {
             // Richtige Antwort: Zeit abziehen (minus 5 Sekunden)
             seconds -= 5;
             if (seconds < 0) {
@@ -141,7 +145,7 @@ function checkMatch() {
         card2.removeEventListener("click", flipCard);
         matchedPairs++;
         pairsFound++;
-        pairsFound = 2; //Unbedingt SPàTER LÖSCHEN!èèèèè!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+       // pairsFound = 2; //Unbedingt SPàTER LÖSCHEN!èèèèè!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         if (pairsFound === 2) {
             // Nach zwei gefundenen Pärchen eine Frage anzeigen
             console.log('showQuestion')
@@ -205,12 +209,15 @@ function saveGameData(messageText) {
 }
 
 async function showQuestion() {
+    // Erster Schritt Div zeigen
+    var questionDiv = document.getElementById("question");
+    questionDiv.style.display = "block";
     allefragen = await allefragenholen()
     console.log('alle fragen innerhalb von show questions', allefragen)
     const questionsatz = document.getElementById('satz')
-    momentaneFrage = allefragen[0]
+    momentaneFrage = allefragen[momentaneFrageIndex]
     questionsatz.innerHTML = `${momentaneFrage.fragesatz}`
-
+    momentaneFrageIndex++
 }
 
 
