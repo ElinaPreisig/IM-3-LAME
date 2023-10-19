@@ -2,6 +2,8 @@ import { supa } from "../supabase.js";
 
 let allefragen;
 let momentaneFrage;
+let momentaneFrageIndex=0;
+let spielZeit;
 
 document.addEventListener('DOMContentLoaded', (event) => {
     const jabutton = document.getElementById('jabutton');
@@ -25,8 +27,11 @@ function checkanswernein(answer){
 
 
 function checkanswer(answer) {
+    // Div nach beantworten verschwinden
+    var questionDiv = document.getElementById("question");
+    questionDiv.style.display = "none";
     // if (userAnswer && userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
-        if (true) {
+        if (answer==momentaneFrage.antwort) {
             // Richtige Antwort: Zeit abziehen (minus 5 Sekunden)
             seconds -= 5;
             if (seconds < 0) {
@@ -141,7 +146,7 @@ function checkMatch() {
         card2.removeEventListener("click", flipCard);
         matchedPairs++;
         pairsFound++;
-        pairsFound = 2; //Unbedingt SPàTER LÖSCHEN!èèèèè!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+       // pairsFound = 2; //Unbedingt SPàTER LÖSCHEN!èèèèè!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         if (pairsFound === 2) {
             // Nach zwei gefundenen Pärchen eine Frage anzeigen
             console.log('showQuestion')
@@ -163,6 +168,29 @@ function checkMatch() {
     isCardFlipped = false;
 }
 
+// Start the timer
+timerInterval = setInterval(function () {
+    seconds++;
+    timer.textContent = `Zeit: ${seconds} Sekunden`;
+}, 1000);
+
+// Funktion, um eine zufällige Frage aus der Datenbank abzurufen
+function fetchRandomQuestion() {
+    return fetch('/get-random-question') // Hier sollte der Endpunkt für die Abfrage der Frage aus der Datenbank stehen
+        .then((response) => response.json());
+}
+
+// Definiton let spielZeit
+// Funktion, um die Zeit aus dem Timer-Element abzurufen
+function getTimerValue() {
+    const timeText = timer.textContent;
+    const secondsIndex = timeText.indexOf(':') + 2;
+    return parseInt(timeText.substring(secondsIndex), 10);
+}
+
+// Hier wird die Zeit aus dem Timer abgerufen und in spielZeit gespeichert
+spielZeit = getTimerValue();
+
 // Function to display a message in a pop-up
 function showMessage(messageText) {
     const messageBox = document.createElement("div");
@@ -174,6 +202,7 @@ function showMessage(messageText) {
     document.body.appendChild(messageBox);
 
     // Hier wird die Zeit und der Spielername in die Datenbank gespeichert
+    console.log('Vor saveGameData:', spielZeit);
     saveGameData(messageText);
 }
 
@@ -185,15 +214,18 @@ function saveGameData(messageText) {
         return; // Wenn kein Spielername eingegeben wurde, breche ab
     }
 
+console.log('In saveGameData:', spielZeit);
+  
     // Hier wird die Zeit und der Spielername in die Datenbank gespeichert
     // const supa = supa.createClient('https://tenojoxlyquvqackgeif.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRlbm9qb3hseXF1dnFhY2tnZWlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTYzMTY3NzAsImV4cCI6MjAxMTg5Mjc3MH0.4ZX9-F1GNCgWSmLleh5QLyDNkE1MljglPV54eemu-2w');
 
     supa
-        .from('users') // Stelle sicher, dass dies auf deine Users-Tabelle in der Datenbank verweist
+        .from('Spielzeit') 
         .upsert([
             {
-                spieler_name: playerName,
-                persönliche_bestzeit: messageText, // Hier speicherst du die erspielte Zeit
+                name_user: playerName,
+                name_game: Quiz.name,
+                spielzeit: seconds,
             }
         ])
         .then(() => {
@@ -205,12 +237,15 @@ function saveGameData(messageText) {
 }
 
 async function showQuestion() {
+    // Erster Schritt Div zeigen
+    var questionDiv = document.getElementById("question");
+    questionDiv.style.display = "block";
     allefragen = await allefragenholen()
     console.log('alle fragen innerhalb von show questions', allefragen)
     const questionsatz = document.getElementById('satz')
-    momentaneFrage = allefragen[0]
+    momentaneFrage = allefragen[momentaneFrageIndex]
     questionsatz.innerHTML = `${momentaneFrage.fragesatz}`
-
+    momentaneFrageIndex++
 }
 
 
@@ -241,14 +276,8 @@ async function showQuestion() {
 //         });
 // }
 
-// Start the timer
-timerInterval = setInterval(function () {
-    seconds++;
-    timer.textContent = `Zeit: ${seconds} Sekunden`;
-}, 1000);
 
-// Funktion, um eine zufällige Frage aus der Datenbank abzurufen
-function fetchRandomQuestion() {
-    return fetch('/get-random-question') // Hier sollte der Endpunkt für die Abfrage der Frage aus der Datenbank stehen
-        .then((response) => response.json());
-}
+
+
+
+

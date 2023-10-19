@@ -58,6 +58,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 10px;
     font-size: 24px;
     cursor: pointer;
     background-size: cover;
@@ -109,7 +110,139 @@ body {
     font-weight: bold;
 }
 
+/* Modal Box CSS */
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
 
+
+  /* Modal Box CSS */
+/* The Modal (background) */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #4d79ff;
+    padding: 60px;
+    border-radius: 60px;
+    text-align: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 100px auto;
+    border-color: none;
+}
+
+#satz {
+    padding-bottom: 50px;
+    font-size: 25px;
+}
+
+#jabutton {
+    margin-right: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    color: black;
+    background-color: white;
+    font-size: 25px;
+}
+
+#jabutton:hover {
+    margin-right: 20px;
+    padding: 10px;
+    border-radius: 12px;
+    color: black;
+    background-color: rgb(209, 204, 204);
+}
+
+#neinbutton{
+    margin-left: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    color: black;
+    background-color: white;
+    font-size: 25px;
+}
+
+#neinbutton:hover {
+    margin-left: 20px;
+    padding: 10px;
+    border-radius: 12px;
+    color: black;
+    background-color: rgb(209, 204, 204);
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* New styles for modal header and body */
+.modal-header h1 {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.modal-body p {
+    color: white;
+    font-size: 18px;
+}
 
 
 
@@ -138,7 +271,7 @@ body {
         }  
     
         }
-    
+
 
 /* Media Query für Bildschirmbreite ab 900px */
 @media (max-width: 900px) {
