@@ -168,12 +168,52 @@ body {
 /* Modal Content */
 .modal-content {
     background-color: #4d79ff;
-    padding: 20px;
-    border-radius: 10px;
+    padding: 60px;
+    border-radius: 60px;
     text-align: center;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     max-width: 400px;
-    margin: 0 auto;
+    margin: 100px auto;
+    border-color: none;
+}
+
+#satz {
+    padding-bottom: 50px;
+    font-size: 25px;
+}
+
+#jabutton {
+    margin-right: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    color: black;
+    background-color: white;
+    font-size: 25px;
+}
+
+#jabutton:hover {
+    margin-right: 20px;
+    padding: 10px;
+    border-radius: 12px;
+    color: black;
+    background-color: rgb(209, 204, 204);
+}
+
+#neinbutton{
+    margin-left: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    color: black;
+    background-color: white;
+    font-size: 25px;
+}
+
+#neinbutton:hover {
+    margin-left: 20px;
+    padding: 10px;
+    border-radius: 12px;
+    color: black;
+    background-color: rgb(209, 204, 204);
 }
 
 /* The Close Button */
