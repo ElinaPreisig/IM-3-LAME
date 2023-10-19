@@ -168,6 +168,18 @@ function checkMatch() {
     isCardFlipped = false;
 }
 
+// Start the timer
+timerInterval = setInterval(function () {
+    seconds++;
+    timer.textContent = `Zeit: ${seconds} Sekunden`;
+}, 1000);
+
+// Funktion, um eine zufällige Frage aus der Datenbank abzurufen
+function fetchRandomQuestion() {
+    return fetch('/get-random-question') // Hier sollte der Endpunkt für die Abfrage der Frage aus der Datenbank stehen
+        .then((response) => response.json());
+}
+
 // Definiton let spielZeit
 // Funktion, um die Zeit aus dem Timer-Element abzurufen
 function getTimerValue() {
@@ -208,12 +220,12 @@ console.log('In saveGameData:', spielZeit);
     // const supa = supa.createClient('https://tenojoxlyquvqackgeif.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRlbm9qb3hseXF1dnFhY2tnZWlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTYzMTY3NzAsImV4cCI6MjAxMTg5Mjc3MH0.4ZX9-F1GNCgWSmLleh5QLyDNkE1MljglPV54eemu-2w');
 
     supa
-        .from('Spielzeit') // Stelle sicher, dass dies auf deine Users-Tabelle in der Datenbank verweist
+        .from('Spielzeit') 
         .upsert([
             {
                 name_user: playerName,
-                name_game: messageText,// Hier speicherst du die erspielte Zeit
-                spielzeit: spielZeit,
+                name_game: Quiz.name,
+                spielzeit: seconds,
             }
         ])
         .then(() => {
@@ -264,17 +276,7 @@ async function showQuestion() {
 //         });
 // }
 
-// Start the timer
-timerInterval = setInterval(function () {
-    seconds++;
-    timer.textContent = `Zeit: ${seconds} Sekunden`;
-}, 1000);
 
-// Funktion, um eine zufällige Frage aus der Datenbank abzurufen
-function fetchRandomQuestion() {
-    return fetch('/get-random-question') // Hier sollte der Endpunkt für die Abfrage der Frage aus der Datenbank stehen
-        .then((response) => response.json());
-}
 
 
 
