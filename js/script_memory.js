@@ -3,6 +3,7 @@ import { supa } from "../supabase.js";
 let allefragen;
 let momentaneFrage;
 let momentaneFrageIndex=0;
+let spielZeit;
 
 document.addEventListener('DOMContentLoaded', (event) => {
     const jabutton = document.getElementById('jabutton');
@@ -167,6 +168,17 @@ function checkMatch() {
     isCardFlipped = false;
 }
 
+// Definiton let spielZeit
+// Funktion, um die Zeit aus dem Timer-Element abzurufen
+function getTimerValue() {
+    const timeText = timer.textContent;
+    const secondsIndex = timeText.indexOf(':') + 2;
+    return parseInt(timeText.substring(secondsIndex), 10);
+}
+
+// Hier wird die Zeit aus dem Timer abgerufen und in spielZeit gespeichert
+spielZeit = getTimerValue();
+
 // Function to display a message in a pop-up
 function showMessage(messageText) {
     const messageBox = document.createElement("div");
@@ -178,6 +190,7 @@ function showMessage(messageText) {
     document.body.appendChild(messageBox);
 
     // Hier wird die Zeit und der Spielername in die Datenbank gespeichert
+    console.log('Vor saveGameData:', spielZeit);
     saveGameData(messageText);
 }
 
@@ -189,15 +202,18 @@ function saveGameData(messageText) {
         return; // Wenn kein Spielername eingegeben wurde, breche ab
     }
 
+console.log('In saveGameData:', spielZeit);
+  
     // Hier wird die Zeit und der Spielername in die Datenbank gespeichert
     // const supa = supa.createClient('https://tenojoxlyquvqackgeif.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRlbm9qb3hseXF1dnFhY2tnZWlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTYzMTY3NzAsImV4cCI6MjAxMTg5Mjc3MH0.4ZX9-F1GNCgWSmLleh5QLyDNkE1MljglPV54eemu-2w');
 
     supa
-        .from('users') // Stelle sicher, dass dies auf deine Users-Tabelle in der Datenbank verweist
+        .from('Spielzeit') // Stelle sicher, dass dies auf deine Users-Tabelle in der Datenbank verweist
         .upsert([
             {
-                spieler_name: playerName,
-                persönliche_bestzeit: messageText, // Hier speicherst du die erspielte Zeit
+                name_user: playerName,
+                name_game: messageText,// Hier speicherst du die erspielte Zeit
+                spielzeit: spielZeit,
             }
         ])
         .then(() => {
@@ -259,5 +275,7 @@ function fetchRandomQuestion() {
     return fetch('/get-random-question') // Hier sollte der Endpunkt für die Abfrage der Frage aus der Datenbank stehen
         .then((response) => response.json());
 }
+
+
 
 
