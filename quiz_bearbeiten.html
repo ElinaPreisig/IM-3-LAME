@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz & Memory</title>
+    <link rel="stylesheet" href="css/styles_quiz_bearbeiten.css">
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1.29.0/dist/umd/supabase.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <a href="index.html"><img src="img/logo.png" alt="Logo" class="logo"> <a href="index.html"></a>
+    <img src="img/elgatto.png" alt="Katze" class="katze" onclick="playSoundEffect()">
+    <div class="quiz-container">
+
+
+        <div class="title-container">
+            <div class="title">
+                <label for="name_quiz"></label>
+                <input type="text" id= "name_quiz" placeholder="Titel deines Spieles eingeben*" required>
+                <div class="answer">
+                    <div class="answer">
+                        <div class="labels">
+                            <label>Nein/</label>
+                            <label>Ja</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    
+           
+            <div class="question">
+                <label for="frage1"></label>
+                <input type="text" id="frage1" placeholder="Frage 1*" required>
+                <div class="answer">
+                    <div class="answer">
+                        <label class="switch">
+                            <input type="checkbox" id="antwort1">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="question">
+                <label for="frage2"></label>
+                <input type="text" id="frage2" placeholder="Frage 2*" required>
+                <div class="answer">
+                    
+                    <div class="answer">
+                        <label class="switch">
+                            <input type="checkbox" id="antwort2">
+                            <span class="slider"></span>
+                        </label>
+                    </div>        
+                </div>
+            </div>
+            <div class="question">
+                <label for="frage3"></label>
+                <input type="text" id="frage3" placeholder="Frage 3*" required>
+                <div class="answer">
+                    
+                    <div class="answer">
+                        <label class="switch">
+                            <input type="checkbox" id="antwort3">
+                            <span class="slider"></span>
+                        </label>
+                    </div>     
+                </div>
+            </div>
+            <div class="question">
+                <label for="frage4"></label>
+                <input type="text" id="frage4" placeholder="Frage 4*" required>
+                <div class="answer">
+                   
+                    <div class="answer">
+                        <label class="switch">
+                            <input type="checkbox" id="antwort4">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="question">
+                <label for="frage5"></label>
+                <input type="text" id="frage5" placeholder="Frage 5*" required>
+                <div class="answer">
+              
+                    <div class="answer">
+                        <label class="switch">
+                            <input type="checkbox" id="antwort5">
+                            <span class="slider"></span>
+                        </label>
+                    </div>                
+                </div>
+            </div>
+            <div>
+                <button class="confirm-button">Bestätigen</button>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+<div class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h1>Quiz erfolgreich gespeichert!</h1>
+        </div>
+        <div class="modal-footer">
+            <a href="memory.html"><button class="play-button">Jetzt Spielen</button></a>
+        </div>
+    </div>
+</div>
+<script type="module" src="js/script_quiz_bearbeiten.js"></script>
+<script type="module" src="supabase.js"></script>
+  <!-- Audio-Element für den Soundeffekt -->
+  <audio id="soundEffect">
+    <source src="audio/mpeg/moew01.mp3" type="audio/mpeg">
+    <!-- Füge hier alternative Quellen oder Formate für den Soundeffekt hinzu -->
+</audio>
+<script>
+    function playSoundEffect() {
+        var audio = document.getElementById('soundEffect');
+        audio.play();
+    }
+</script>
+
+</body>
+
+</html>
