@@ -12,7 +12,7 @@
     <a href="index.html">
         <img src="img/logo.png" alt="Logo" class="logo">
     </a>
-    <img src="img/elgatto.png" alt="Katze" class="katze">
+    <img src="img/elgatto.png" alt="Katze" class="katze" onclick="playSoundEffect()">
     <div id="game-container"></div>
     <div id="game-title"></div>
     <div id="message"></div>
@@ -26,7 +26,12 @@
             <input id="neinbutton" type="button" value="Nein">
         </div>​
     </div>     
-
+    <script>
+        function playSoundEffect() {
+            var audio = document.getElementById('soundEffect');
+            audio.play();
+        }
+    </script>
     <script type="module" src="js/script_memory.js"></script>
     <script type="module" src="supabase.js"></script>
 </body>
