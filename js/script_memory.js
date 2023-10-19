@@ -224,7 +224,6 @@ console.log('In saveGameData:', spielZeit);
         .upsert([
             {
                 name_user: playerName,
-                name_game: Quiz.name,
                 spielzeit: seconds,
             }
         ])
