@@ -259,3 +259,5 @@ function fetchRandomQuestion() {
     return fetch('/get-random-question') // Hier sollte der Endpunkt für die Abfrage der Frage aus der Datenbank stehen
         .then((response) => response.json());
 }
+
+
