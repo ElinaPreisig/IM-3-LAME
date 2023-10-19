@@ -9,7 +9,7 @@ function formatTime(seconds) {
 async function showTimes(){
     const { data, error } = await supa
         .from('Spielzeit')
-        .select('name_game, name_user, spielzeit')
+        .select('name_user, spielzeit')
         .order('spielzeit', { ascending: true })
         .limit(5);
     console.log(data);
@@ -19,7 +19,6 @@ async function showTimes(){
     data.forEach((eintrag, index) => {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>${eintrag.name_game}</td>
             <td>${eintrag.name_user}</td>
             <td>${formatTime(eintrag.spielzeit)}</td>
         `;
