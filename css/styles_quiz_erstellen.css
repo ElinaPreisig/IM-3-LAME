@@ -239,3 +239,58 @@ input:checked + .slider:before {
     cursor: pointer;
     margin-top: 20px;
 }
+
+@media only screen and (max-width: 900px) {
+    /* Stile für kleine Bildschirme */
+    .logo {
+      max-width: 100%;
+    }
+  
+    .katze {
+      max-width: 100%;
+    }
+  
+    .quiz-container {
+      max-width: 50%;
+    }
+}
+    /* Weitere Anpassungen für kleinere Bildschirme */
+  
+  @media only screen and (max-width: 480px) {
+    .question input {
+        max-width: 100px;
+    }
+
+    #name_quiz {
+        max-width: 80px;
+    }
+
+    .katze {
+        max-width: 100%;
+        position: absolute; 
+    bottom: 0;
+    left: 0;
+      }
+    /* Stile für noch kleinere Bildschirme */
+    /* Hier können Sie spezifische Anpassungen vornehmen */
+  }
+
+  @media only screen and (max-width: 360px) {
+    .question input {
+        max-width: 40px;
+    }
+
+    #name_quiz {
+        max-width: 40px;
+    }
+
+    .katze {
+        max-width: 100%;
+        position: absolute; 
+    bottom: 0;
+    left: 0;
+      }
+    /* Stile für noch kleinere Bildschirme */
+    /* Hier können Sie spezifische Anpassungen vornehmen */
+  }
+
