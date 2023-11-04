@@ -213,20 +213,10 @@ button:hover{
 
 
 @media (max-width: 900px) {
-    .button-container {
-        display: block;
-    }
-
     .logo {
-        max-width: flex; /* Das Logo behält seine ursprüngliche Größe bei */
-        width: 67%;
-        position: absolute;
-        right: 8%;
+        max-width: 100%; /* Das Logo behält seine ursprüngliche Größe bei */
     }
 
-    .button-suchen {
-        margin-top: 300px; /* Passen Sie den oberen Abstand an */
-    }
 
     .button-bestenliste {
         position: relative; /* Zurücksetzen der Positionseigenschaft */
