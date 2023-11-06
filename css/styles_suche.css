@@ -223,4 +223,51 @@ button:hover{
         bottom: 0; /* Zurücksetzen der Positionseigenschaft */
         right: auto; /* Zurücksetzen der Positionseigenschaft */
     }
+
+    .katze {
+        max-width: 100%;
+        position: absolute; 
+    bottom: 0;
+    left: 0;
 }
+}
+
+    /* Weitere Anpassungen für kleinere Bildschirme */
+  
+  @media only screen and (max-width: 480px) {
+  
+    .button-suchen {
+        max-width: 200%; /* Das Logo behält seine ursprüngliche Größe bei */
+    }
+    #suchfeld {
+        max-width: 150px;
+    }
+
+    .katze {
+        max-width: 100%;
+        position: relative; 
+    bottom: 0;
+    left: 0;
+      }
+    /* Stile für noch kleinere Bildschirme */
+    /* Hier können Sie spezifische Anpassungen vornehmen */
+  }
+
+  @media only screen and (max-width: 360px) {
+ 
+    #suchbutton.search-button
+    {
+        max-width: 40px;
+        position: sticky;
+    }
+
+    .katze {
+        max-width: 100%;
+        position: absolute; 
+    bottom: 0;
+    left: 0;
+      }
+    /* Stile für noch kleinere Bildschirme */
+    /* Hier können Sie spezifische Anpassungen vornehmen */
+  }
+
