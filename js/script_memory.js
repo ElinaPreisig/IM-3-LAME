@@ -212,10 +212,10 @@ console.log('In saveGameData:', spielZeit);
         .upsert([
             {
                 name_user: playerName,
-                name_game: messageText,// Hier speicherst du die erspielte Zeit
-                spielzeit: spielZeit,
+                name_game: urlParams.get('spiel'),// Hier speicherst du die erspielte Zeit
+                spielzeit: seconds,
             }
-        ])
+        ], )
         .then(() => {
             console.log('Spielzeit und Spielername erfolgreich gespeichert.');
         })
