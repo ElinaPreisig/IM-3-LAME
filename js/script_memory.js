@@ -156,7 +156,6 @@ function checkMatch() {
         if (matchedPairs === images.length / 2) {
             clearInterval(timerInterval);
             showMessage(`Gratulation! Du hast es geschafft! Zeit: ${seconds} Sekunden`);
-            showMessage('Willst du deine Daten speichern?', "jabutton", "neinbutton")
         }
         // if (matchedPairs === images.length / 2) {
         //     showMessage()
