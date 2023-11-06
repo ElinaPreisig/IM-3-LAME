@@ -156,7 +156,11 @@ function checkMatch() {
         if (matchedPairs === images.length / 2) {
             clearInterval(timerInterval);
             showMessage(`Gratulation! Du hast es geschafft! Zeit: ${seconds} Sekunden`);
+            showMessage('Willst du deine Daten speichern?', "jabutton", "neinbutton")
         }
+        // if (matchedPairs === images.length / 2) {
+        //     showMessage()
+        // }
     } else {
         card1.style.backgroundImage = `url(img/LameMemory.jpeg)`;
         card2.style.backgroundImage = `url(img/LameMemory.jpeg)`;
@@ -167,6 +171,13 @@ function checkMatch() {
     flippedCards = [];
     isCardFlipped = false;
 }
+
+// Start the timer
+timerInterval = setInterval(function () {
+    seconds++;
+    timer.textContent = `Zeit: ${seconds} Sekunden`;
+}, 1000);
+
 
 // Definiton let spielZeit
 // Funktion, um die Zeit aus dem Timer-Element abzurufen
@@ -194,36 +205,6 @@ function showMessage(messageText) {
     saveGameData(messageText);
 }
 
-// Function to save game data (time and player name) to the database
-function saveGameData(messageText) {
-    const playerName = prompt("Bitte gib deinen Namen ein:");
-
-    if (!playerName) {
-        return; // Wenn kein Spielername eingegeben wurde, breche ab
-    }
-
-console.log('In saveGameData:', spielZeit);
-  
-    // Hier wird die Zeit und der Spielername in die Datenbank gespeichert
-    // const supa = supa.createClient('https://tenojoxlyquvqackgeif.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRlbm9qb3hseXF1dnFhY2tnZWlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTYzMTY3NzAsImV4cCI6MjAxMTg5Mjc3MH0.4ZX9-F1GNCgWSmLleh5QLyDNkE1MljglPV54eemu-2w');
-
-    supa
-        .from('Spielzeit') // Stelle sicher, dass dies auf deine Users-Tabelle in der Datenbank verweist
-        .upsert([
-            {
-                name_user: playerName,
-                name_game: urlParams.get('spiel'),// Hier speicherst du die erspielte Zeit
-                spielzeit: seconds,
-            }
-        ], )
-        .then(() => {
-            console.log('Spielzeit und Spielername erfolgreich gespeichert.');
-        })
-        .catch((error) => {
-            console.error('Fehler beim Speichern der Spielzeit und des Spielername:', error);
-        });
-}
-
 async function showQuestion() {
     // Erster Schritt Div zeigen
     var questionDiv = document.getElementById("question");
@@ -235,6 +216,65 @@ async function showQuestion() {
     questionsatz.innerHTML = `${momentaneFrage.fragesatz}`
     momentaneFrageIndex++
 }
+
+
+    // Function to save game data (time and player name) to the database
+    function saveGameData(messageText) {
+    const playerName = prompt("Bitte gib deinen Namen ein:");
+
+    if (!playerName) {
+        return; // Wenn kein Spielername eingegeben wurde, breche ab
+    }
+
+
+    console.log('In saveGameData:', spielZeit);
+
+    // Hier wird die Zeit und der Spielername in die Datenbank gespeichert
+    // const supa = supa.createClient('https://tenojoxlyquvqackgeif.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRlbm9qb3hseXF1dnFhY2tnZWlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTYzMTY3NzAsImV4cCI6MjAxMTg5Mjc3MH0.4ZX9-F1GNCgWSmLleh5QLyDNkE1MljglPV54eemu-2w');
+
+    supa
+        .from('Spielzeit') 
+        .upsert([
+            {
+                name_user: playerName,
+                name_game: messageText,// Hier speicherst du die erspielte Zeit
+                spielzeit: spielZeit,
+            }
+        ], )
+        .then(() => {
+            console.log('Spielzeit und Spielername erfolgreich gespeichert.');
+        })
+        .catch((error) => {
+            console.error('Fehler beim Speichern der Spielzeit und des Spielername:', error);
+        });
+}
+
+    //     // Function to display the save confirmation pop-up
+    // function displaySaveConfirmationPopup() {
+    //     const questionDiv = document.getElementById("frage-speichern");
+    //     questionDiv.style.display = "block";
+    // }
+
+    // function checkanswer(displaySaveConfirmationPopup) {
+    //     // Div nach beantworten verschwinden
+    //     var questionDiv = document.getElementById("button");
+    //     questionDiv.style.display = "none";
+    //     // if (userAnswer && userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+    //         if (answer==jabutton) {
+    //             // Richtige Antwort: Zeit abziehen (minus 5 Sekunden)
+    //             supa
+    //             .from('Spielzeit')
+    //             .delete('spielzeit', seconds)
+    //             .eq('name_user', playerName)
+    //             .then(() => {
+    //                 console.log('Spielerdaten erfolgreich gelöscht.');
+    //             })
+    //             }
+    // }
+    
+
+
+
 
 
 
@@ -264,17 +304,7 @@ async function showQuestion() {
 //         });
 // }
 
-// Start the timer
-timerInterval = setInterval(function () {
-    seconds++;
-    timer.textContent = `Zeit: ${seconds} Sekunden`;
-}, 1000);
 
-// Funktion, um eine zufällige Frage aus der Datenbank abzurufen
-function fetchRandomQuestion() {
-    return fetch('/get-random-question') // Hier sollte der Endpunkt für die Abfrage der Frage aus der Datenbank stehen
-        .then((response) => response.json());
-}
 
 
 

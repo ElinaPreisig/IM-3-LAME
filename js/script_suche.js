@@ -33,7 +33,7 @@ async function suche() {
                 playLink.innerHTML = playEmoji;
         
                 const editLink = document.createElement("a");
-                editLink.href = "www.wikipedia.com";
+                editLink.href = "quiz_bearbeiten.html" + `?spiel=${item.id}`;
                 editLink.innerHTML = editEmoji;
 
                 suchergebnisDiv.appendChild(document.createTextNode(`${item.name} `));
@@ -71,7 +71,7 @@ async function suche() {
                         }
 
                         if (passwortEingabe === quizData[0].passwort) {
-                            window.location.href = editLink.href = 'quiz_erstellen.html';
+                            window.location.href = editLink.href = 'quiz_bearbeiten.html'+ `?spiel=${item.id}`;
                             // Fügen Sie hier die Logik zum Anzeigen der Fragen ein
                         } else {
                             const errorPopupDiv = document.createElement("div");
