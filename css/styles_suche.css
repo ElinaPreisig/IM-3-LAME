@@ -17,11 +17,9 @@ body {
 
 .logo {
     position: absolute;
-    display: flex;
-    top: 0;
     right: 31%;
-    width:34%;
-    height: auto;
+    width: 30%;
+
 }
 
 .katze {
@@ -235,9 +233,11 @@ button:hover{
   
   @media only screen and (max-width: 480px) {
   
-    .button-suchen {
-        max-width: 200%; /* Das Logo behält seine ursprüngliche Größe bei */
+    .logo {
+        max-width: 150%; /* Das Logo behält seine ursprüngliche Größe bei */
     }
+
+
     #suchfeld {
         max-width: 150px;
     }
