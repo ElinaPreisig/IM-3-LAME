@@ -5,6 +5,11 @@ let momentaneFrage;
 let momentaneFrageIndex=0;
 let spielZeit;
 
+
+var lastquestion = document.getElementById('last-question');
+lastquestion.style.display = 'none';
+
+
 document.addEventListener('DOMContentLoaded', (event) => {
     const jabutton = document.getElementById('jabutton');
     jabutton.addEventListener('click', checkanswerja);
@@ -157,6 +162,7 @@ function checkMatch() {
             clearInterval(timerInterval);
             showMessage(`Gratulation! Du hast es geschafft! Zeit: ${seconds} Sekunden`);
         }
+
         // if (matchedPairs === images.length / 2) {
         //     showMessage()
         // }
@@ -170,6 +176,7 @@ function checkMatch() {
     flippedCards = [];
     isCardFlipped = false;
 }
+
 
 // Start the timer
 timerInterval = setInterval(function () {
@@ -216,6 +223,30 @@ async function showQuestion() {
     momentaneFrageIndex++
 }
 
+async function letzteFrage() {
+    // Erster Schritt: Div zeigen
+    var lastquestionDiv = document.getElementById("last-question");
+    lastquestionDiv.style.display = "block";
+
+    // Den Text für die Frage setzen
+    const frage = document.getElementById('satz');
+    frage.innerHTML = "Willst du deine Daten speichern?"; // Setze den Text direkt hier ein
+
+    // Jetzt kannst du auf die Antwortbuttons zugreifen und Eventlistener hinzufügen
+    const jabutton = document.getElementById('jabutton');
+    jabutton.addEventListener('click', function() {
+        checkanswer(true);
+        lastquestionDiv.style.display = "none"; // Verstecke die Modal Box nach der Auswahl
+    });
+
+    const neinbutton = document.getElementById('neinbutton');
+    neinbutton.addEventListener('click', function() {
+        checkanswer(false);
+        lastquestionDiv.style.display = "none"; // Verstecke die Modal Box nach der Auswahl
+    });
+}
+
+
 
     // Function to save game data (time and player name) to the database
     function saveGameData(messageText) {
@@ -228,7 +259,6 @@ async function showQuestion() {
 
     console.log('In saveGameData:', spielZeit);
 
-    
 
     // Hier wird die Zeit und der Spielername in die Datenbank gespeichert
     // const supa = supa.createClient('https://tenojoxlyquvqackgeif.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRlbm9qb3hseXF1dnFhY2tnZWlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTYzMTY3NzAsImV4cCI6MjAxMTg5Mjc3MH0.4ZX9-F1GNCgWSmLleh5QLyDNkE1MljglPV54eemu-2w');
@@ -303,7 +333,7 @@ async function showQuestion() {
 //             // Aktualisierte Zeit anzeigen
 //             timer.textContent = `Zeit: ${seconds} Sekunden`;
 //         });
-// }
+// }             letzteFrage();
 
 
 
