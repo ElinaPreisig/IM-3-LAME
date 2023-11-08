@@ -211,9 +211,11 @@ button:hover{
 
 @media (max-width: 900px) {
     .logo {
-        max-width: 100%; /* Das Logo behält seine ursprüngliche Größe bei */
-    }
+        max-width: flex; /* Das Logo behält seine ursprüngliche Größe bei */
+        width: 50%;
+        position: absolute;
 
+    }
 
     .button-bestenliste {
         position: relative; /* Zurücksetzen der Positionseigenschaft */
@@ -234,9 +236,11 @@ button:hover{
   @media only screen and (max-width: 480px) {
   
     .logo {
-        max-width: 150%; /* Das Logo behält seine ursprüngliche Größe bei */
-    }
+        max-width: flex; /* Das Logo behält seine ursprüngliche Größe bei */
+        width: 50%;
+        position: absolute;
 
+    }
 
     #suchfeld {
         max-width: 150px;
@@ -253,7 +257,13 @@ button:hover{
   }
 
   @media only screen and (max-width: 360px) {
- 
+    
+    .logo {
+        max-width: flex; /* Das Logo behält seine ursprüngliche Größe bei */
+        width: 40%;
+        position: absolute;
+
+    }
     #suchbutton.search-button
     {
         max-width: 40px;
