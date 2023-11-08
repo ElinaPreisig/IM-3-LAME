@@ -9,7 +9,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     height: 100vh;
     width: 100vw;
     position: relative;
@@ -18,11 +17,9 @@ body {
 
 .logo {
     position: absolute;
-    display: flex;
-    top: 0;
     right: 31%;
-    width:34%;
-    height: auto;
+    width: 30%;
+
 }
 
 .katze {
@@ -214,13 +211,72 @@ button:hover{
 
 @media (max-width: 900px) {
     .logo {
-        max-width: 100%; /* Das Logo behält seine ursprüngliche Größe bei */
-    }
+        max-width: flex; /* Das Logo behält seine ursprüngliche Größe bei */
+        width: 50%;
+        position: absolute;
 
+    }
 
     .button-bestenliste {
         position: relative; /* Zurücksetzen der Positionseigenschaft */
         bottom: 0; /* Zurücksetzen der Positionseigenschaft */
         right: auto; /* Zurücksetzen der Positionseigenschaft */
     }
+
+    .katze {
+        max-width: 100%;
+        position: absolute; 
+    bottom: 0;
+    left: 0;
 }
+}
+
+    /* Weitere Anpassungen für kleinere Bildschirme */
+  
+  @media only screen and (max-width: 480px) {
+  
+    .logo {
+        max-width: flex; /* Das Logo behält seine ursprüngliche Größe bei */
+        width: 50%;
+        position: absolute;
+
+    }
+
+    #suchfeld {
+        max-width: 150px;
+    }
+
+    .katze {
+        max-width: 100%;
+        position: relative; 
+    bottom: 0;
+    left: 0;
+      }
+    /* Stile für noch kleinere Bildschirme */
+    /* Hier können Sie spezifische Anpassungen vornehmen */
+  }
+
+  @media only screen and (max-width: 360px) {
+    
+    .logo {
+        max-width: flex; /* Das Logo behält seine ursprüngliche Größe bei */
+        width: 40%;
+        position: absolute;
+
+    }
+    #suchbutton.search-button
+    {
+        max-width: 40px;
+        position: sticky;
+    }
+
+    .katze {
+        max-width: 100%;
+        position: absolute; 
+    bottom: 0;
+    left: 0;
+      }
+    /* Stile für noch kleinere Bildschirme */
+    /* Hier können Sie spezifische Anpassungen vornehmen */
+  }
+
