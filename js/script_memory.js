@@ -63,7 +63,6 @@ const spielid = urlParams.get('spiel')
 console.log(spielid);
 
 //jetzt holen wir uns die Daten des Quizzes
-//select
 async function allefragenholen() {
     const { data, error } = await supa.from("Fragen").select().eq('quiz_id', `${spielid}`);
     return data;
@@ -246,8 +245,6 @@ async function letzteFrage() {
     });
 }
 
-
-
     // Function to save game data (time and player name) to the database
     function saveGameData(messageText) {
     const playerName = prompt("Bitte gib deinen Namen ein:");
@@ -256,9 +253,10 @@ async function letzteFrage() {
         return; // Wenn kein Spielername eingegeben wurde, breche ab
     }
 
+    letzteFrage();
 
     console.log('In saveGameData:', spielZeit);
-
+}
 
     // Hier wird die Zeit und der Spielername in die Datenbank gespeichert
     // const supa = supa.createClient('https://tenojoxlyquvqackgeif.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRlbm9qb3hseXF1dnFhY2tnZWlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTYzMTY3NzAsImV4cCI6MjAxMTg5Mjc3MH0.4ZX9-F1GNCgWSmLleh5QLyDNkE1MljglPV54eemu-2w');
@@ -278,7 +276,7 @@ async function letzteFrage() {
         .catch((error) => {
             console.error('Fehler beim Speichern der Spielzeit und des Spielername:', error);
         });
-}
+
 
     //     // Function to display the save confirmation pop-up
     // function displaySaveConfirmationPopup() {
