@@ -85,3 +85,13 @@ button:hover {
 
     }
 }
+
+@media only screen and (max-width: 480px) {
+  
+    .logo {
+        max-width: flex; /* Das Logo behält seine ursprüngliche Größe bei */
+        width: 40%;
+        position: absolute;
+
+    }
+  }
