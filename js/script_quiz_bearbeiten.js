@@ -43,7 +43,11 @@ const urlParams = new URLSearchParams(queryString)
 const spielid = urlParams.get('spiel')
 console.log(spielid);
 
+//Änderung des Links zum Spiel
+const changeURL = document.querySelector('.game-id-url');
+        changeURL.href = "memory.html" + `?spiel=${spielid}`;
 
+console.log(changeURL);
 
 async function updateQuizname() {
     console.log("updateQuizname gestartet");  
@@ -60,29 +64,8 @@ async function updateQuizname() {
     }
 }
 
-/*
 
-funktionierender Code für eine Frage:
-async function insertFrage1() {
-  const frage1 = document.querySelector('#frage1');
-  const { data } = await supa.from("Fragen").insert(
-      [
-          {
-              fragesatz: frage1.value,
-          }
-      ]
-  );
- 
- if (data) {
-    console.log('Entry was created successfully', data);
-  } else {
-    console.log('Error occured')
-  }
-}
-
-*/
-/* Function für Fragen*/
-
+//Function für Update Fragen und Antworten
 async function updateFragen() {
     
 
@@ -198,31 +181,3 @@ for (let i = 0; i < 5; i++) {
     }
 
 }
-
-
-
-
-
-    /*for (let i = 0; i <= 5; i++) {
-
-        const frage = document.querySelector(fragen[i]);
-
-        
-        const { data } = await supa.from("Fragen").insert([
-            {
-                fragesatz: frage.value,
-            }
-        ]);
-    }
-*/
-/*
-    if (data) {
-        console.log('Frage' + [i] + 'wurde erfolgreich eingefügt');
-    } else {
-        console.log('Fehler beim Einfügen von Frage');
-    }
-    */
-
-
-
-
