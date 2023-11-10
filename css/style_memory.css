@@ -302,3 +302,50 @@ body {
     }
 }
 
+@media (max-width: 560px) {
+    #game-container {
+        grid-template-columns: repeat(4, 1fr); /* 4 Spalten */
+        grid-template-rows: repeat(5, 1fr); /* 5 Reihen */
+        width: 300px; /* Breite des Spielfelds anpassen */
+    }
+
+    .card {
+        font-size: 12px; /* Kleinere Schriftgröße für die Karten */
+    }
+
+    .logo {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100px;
+        height: auto;
+    }
+
+    #timer {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 340px) {
+    #game-container {
+        grid-template-columns: repeat(4, 1fr); /* 4 Spalten */
+        grid-template-rows: repeat(5, 1fr); /* 5 Reihen */
+        width: 200px; /* Breite des Spielfelds anpassen */
+    }
+
+    .card {
+        font-size: 8px; /* Kleinere Schriftgröße für die Karten */
+    }
+
+    .logo {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100px;
+        height: auto;
+    }
+    
+    #timer {
+        font-size: 16px;
+    }
+}
