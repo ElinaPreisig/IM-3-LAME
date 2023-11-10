@@ -96,7 +96,7 @@ for (let i = 0; i < images.length; i++) {
     cards.push(card);
 }
 
-function flipCard() {
+async function flipCard() {
     if (isCardFlipped) return;
 
     const card = this;
@@ -125,8 +125,9 @@ async function checkMatch() {
             showQuestion();
             pairsFound = 0;
         }
+
         if (matchedPairs === images.length / 2) {
-            clearInterval(timerInterval);{
+                 clearInterval(timerInterval);{
                 showCongratulations();
             }
             return;
@@ -147,7 +148,7 @@ timerInterval = setInterval(function () {
     timer.textContent = `Zeit: ${seconds} Sekunden`;
 }, 1000);
 
-function getTimerValue() {
+async function getTimerValue() {
     const timeText = timer.textContent;
     const secondsIndex = timeText.indexOf(':') + 2;
     return parseInt(timeText.substring(secondsIndex), 10);
@@ -155,7 +156,7 @@ function getTimerValue() {
 
 spielZeit = getTimerValue();
 
-function showMessage(messageText) {
+async function showMessage(messageText) {
     const messageBox = document.createElement("div");
     messageBox.classList.add("message-box");
     const messageContent = document.createElement("div");
@@ -228,6 +229,6 @@ async function lastFrage() {
     });
 }
 
-function showCongratulations() {
+async function showCongratulations() {
     showMessage(`Gratulation! Du hast es geschafft! Zeit: ${seconds} Sekunden`);
 }
