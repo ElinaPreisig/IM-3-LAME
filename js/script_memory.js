@@ -4,6 +4,8 @@ let allefragen;
 let momentaneFrage;
 let momentaneFrageIndex = 0;
 let spielZeit;
+let playerName;
+let lastSavedId; // Neue Variable, um die zuletzt gespeicherte ID zu speichern
 
 var lastquestion = document.getElementById('last-question');
 lastquestion.style.display = 'none';
@@ -19,7 +21,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 function checkanswerja(answer) {
     checkanswer(true);
     console.log('checkanswerja');
-    if (matchedPairs === 10){
+    if (matchedPairs === 10) {
         showCongratulations();
         console.log('showCongratulations');
     }
@@ -28,7 +30,7 @@ function checkanswerja(answer) {
 function checkanswernein(answer) {
     checkanswer(false);
     console.log('checkanswernein');
-    if (matchedPairs === 10){
+    if (matchedPairs === 10) {
         showCongratulations();
         console.log('showCongratulations');
     }
@@ -137,12 +139,9 @@ async function checkMatch() {
         }
 
         if (matchedPairs === images.length / 2) {
-                 clearInterval(timerInterval);{
-            }
+            clearInterval(timerInterval);
             matchedPairs = 10;
         }
-
-        
     } else {
         card1.style.backgroundImage = `url(img/LameMemory.jpeg)`;
         card2.style.backgroundImage = `url(img/LameMemory.jpeg)`;
@@ -152,42 +151,35 @@ async function checkMatch() {
 
     flippedCards = [];
     isCardFlipped = false;
-
-    async function showQuestion() {
-        var questionDiv = document.getElementById("question");
-        questionDiv.style.display = "block";
-        allefragen = await allefragenholen();
-        console.log('alle fragen innerhalb von show questions', allefragen);
-        const questionsatz = document.getElementById('satz');
-        momentaneFrage = allefragen[momentaneFrageIndex];
-        questionsatz.innerHTML = `${momentaneFrage.fragesatz}`;
-        console.log( "Frage angezeigt")
-        momentaneFrageIndex++;
-    }
-
-   
 }
 
-
+async function showQuestion() {
+    var questionDiv = document.getElementById("question");
+    questionDiv.style.display = "block";
+    allefragen = await allefragenholen();
+    console.log('alle fragen innerhalb von show questions', allefragen);
+    const questionsatz = document.getElementById('satz');
+    momentaneFrage = allefragen[momentaneFrageIndex];
+    questionsatz.innerHTML = `${momentaneFrage.fragesatz}`;
+    console.log("Frage angezeigt")
+    momentaneFrageIndex++;
+}
 
 timerInterval = setInterval(function () {
     seconds++;
     timer.textContent = `Zeit: ${seconds} Sekunden`;
 }, 1000);
 
+spielZeit = getTimerValue();
+
+async function showCongratulations() {
+    showMessage(`Gratulation! Du hast es geschafft! Zeit: ${seconds} Sekunden`);
+}
+
 async function getTimerValue() {
     const timeText = timer.textContent;
     const secondsIndex = timeText.indexOf(':') + 2;
     return parseInt(timeText.substring(secondsIndex), 10);
-}
-
-spielZeit = getTimerValue();
-
-
-
-
-async function showCongratulations() {
-    showMessage(`Gratulation! Du hast es geschafft! Zeit: ${seconds} Sekunden`);
 }
 
 async function showMessage(messageText) {
@@ -199,42 +191,42 @@ async function showMessage(messageText) {
 
     const weiterButton = document.createElement("button");
     weiterButton.textContent = "Weiter";
-    weiterButton.addEventListener("click", function () {
+    weiterButton.addEventListener("click", async function () {
         messageBox.style.display = "none";
-        const playerName = prompt("Bitte gib deinen Namen ein:");
+        playerName = prompt("Bitte gib deinen Namen ein:");
 
         if (!playerName) {
             return;
         }
+
         console.log('In saveGameData:', playerName);
+
+        spielZeit = await getTimerValue();
+
         console.log('In saveGameData:', spielZeit);
 
         supa
             .from('Spielzeit')
             .upsert([
                 {
-                    spielzeit: spielZeit,
+                    spielzeit: spielZeit.toString(),
                     name_user: playerName,
                 }
             ])
             .then(() => {
-                console.log('Spielzeit und Spielername erfolgreich gespeichert.', spielzeit, name_user);
+                console.log('Spielzeit und Spielername erfolgreich gespeichert.', spielZeit, playerName);
             })
             .catch((error) => {
                 console.error('Fehler beim Speichern der Spielzeit und des Spielername:', error);
             });
-            
+
         lastFrage();
-    }
-    );
+    });
 
     messageBox.appendChild(messageContent);
     messageBox.appendChild(weiterButton);
     document.body.appendChild(messageBox);
 }
-
-const NamePlayeraktuell = playerName;
-console.log('Bis do kömmemer', spielZeit, NamePlayeraktuell);
 
 async function lastFrage() {
     var lastquestionDiv = document.getElementById("last-question");
@@ -243,41 +235,50 @@ async function lastFrage() {
     const frage = document.getElementById('satz');
     frage.innerHTML = "Willst du deine Daten speichern?";
 
+    const { data, error } = await supa
+        .from('Spielzeit')
+        .select('id')
+        .match({'name_user': playerName, 'spielzeit': spielZeit})
+        .order('id', { ascending: false })
+        .limit(1);
 
-     // Get the highest quiz_id for the given user name
-     // das söztt d function sii zum d id hola
-     const { data, error } = await supa
-     .from('Spielzeit')
-     .select('id')
-     .match({'name_user': playerName, 'spielzeit': spielZeit})
-     .order('id', { ascending: false }) // Order by id in descending order
-     .limit(1); // Limit the result to one row
- 
-   if (error) {
-     console.error('Error fetching data:', error);
-   } else {
-     const highestIdRow = data[0].id;
-     console.log('Row with the highest id:', highestIdRow);
-     return highestIdRow;
+    if (error) {
+        console.error('Error fetching data:', error);
+    } else {
+        // Speichere die zuletzt gespeicherte ID
+        lastSavedId = data[0]?.id;
 
-     // das sött d function sii zum delete
-   async function deleterow() {
-       const { data, error } = await supa
-       .from('Spielzeit')
-       .delete()
-       .eq('id', highestIdRow.id);
-   }
+        // Neue Event-Listener für die "Ja" und "Nein" Buttons in der letzten Frage
+        const jaButtonLastQuestion = document.getElementById('jaButtonLastQuestion');
+        jaButtonLastQuestion.addEventListener('click', function () {
+            window.location.href = "index.html";
+        });
 
+        const neinButtonLastQuestion = document.getElementById('neinButtonLastQuestion');
+        neinButtonLastQuestion.addEventListener('click', async function () {
+            checkanswer(false);
+            lastquestionDiv.style.display = "none";
+
+            // Hier wird die Funktion zum Löschen der Daten aufgerufen
+            await deleterow(lastSavedId);
+        });
+    }
 }
 
-    const jabutton = document.getElementById('jabutton');
-    jabutton.addEventListener('click', deleterow ());
+async function deleterow(savedId) {
+    if (!savedId) {
+        console.error('Invalid id for deletion:', savedId);
+        return;
+    }
 
-  
-    const neinbutton = document.getElementById('neinbutton');
-    neinbutton.addEventListener('click', function () {
-        checkanswer(false);
-        lastquestionDiv.style.display = "none";
-    });
-    console.log('lastFrage');
+    const { data, error } = await supa
+        .from('Spielzeit')
+        .delete()
+        .eq('id', savedId);
+
+    if (error) {
+        console.error('Error deleting row:', error);
+    } else {
+        console.log('Row deleted successfully:', savedId);
+    }
 }
