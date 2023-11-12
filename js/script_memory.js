@@ -251,14 +251,14 @@ async function lastFrage() {
         // Neue Event-Listener für die "Ja" und "Nein" Buttons in der letzten Frage
         const jaButtonLastQuestion = document.getElementById('jaButtonLastQuestion');
         jaButtonLastQuestion.addEventListener('click', function () {
-            window.location.href = "index.html";
+            window.location.href = "Bestenliste.html";
         });
 
         const neinButtonLastQuestion = document.getElementById('neinButtonLastQuestion');
         neinButtonLastQuestion.addEventListener('click', async function () {
             checkanswer(false);
             lastquestionDiv.style.display = "none";
-
+            window.location.href = "index.html";
             // Hier wird die Funktion zum Löschen der Daten aufgerufen
             await deleterow(lastSavedId);
         });
