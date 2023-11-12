@@ -9,9 +9,10 @@ function formatTime(seconds) {
 async function showTimes() {
     try {
         const { data, error } = await supa
-            .from('Spielzeit')
-            .select('name_user, spielzeit')
-            .range(0, 4); // Wähle die ersten 5 Einträge (0-4, da die Indexierung bei 0 beginnt)
+        .from('Spielzeit')
+        .select('name_user, spielzeit')
+        .order('spielzeit', { ascending: true }) // Sortiere aufsteigend nach Spielzeit
+        .range(0, 4); // Wähle die ersten 5 Einträge
 
 
 
@@ -22,7 +23,7 @@ async function showTimes() {
 
         console.log(data);
 
-        data.sort((a, b) => parseInt(a.spielzeit) - parseInt(b.spielzeit));
+      //  data.sort((a, b) => parseInt(a.spielzeit) - parseInt(b.spielzeit));
 
 
         const bestenlisteTable = document.getElementById('bestenliste-table');
