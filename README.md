@@ -19,3 +19,17 @@ Unsere Gruppe hat erfolgreich eine Webanwendung entwickelt, die ein Memoryspiel 
 Der größte Teil des Codes liegt in der effektiven Umsetzung des Memoryspiels und der Integration von Quizfragen. Durch die dynamische Anpassung der Spielzeit und die Implementierung von Funktionen wie dem Anzeigen von Fragen und dem Speichern von Spielerdaten haben wir unser Verständnis von JavaScript erweitert.
 
 Insgesamt hat dieses Projekt nicht nur unsere technischen Fähigkeiten gestärkt, sondern auch unser Teamwork verbessert und uns tiefer in die Welt der Webentwicklung eingeführt. Es war eine herausfordernde, aber lohnende Erfahrung.
+
+
+Informationen zum Testing
+
+Da wir bewusst auf ein Login verzichtet haben, um den "Retrofeel" zu bewahren, hier noch einige Infos zum Testing.
+
+Um die Webapp richtig testen zu können haben wir hier 3 Spiele inkl. Passwort aufgelistet.
+Alternativ kann man natürlich auch ein neues Spiel erstellen.
+
+Geografie 101: 12345
+Tiere der Welt: 54321
+Die Wichtigkeit von Schlaf: 35376
+
+
