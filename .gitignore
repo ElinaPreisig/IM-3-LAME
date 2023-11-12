@@ -1,0 +1,5 @@
+# .gitignore
+
+# Ignoriere die supabase.js-Datei
+supabase.js
+
